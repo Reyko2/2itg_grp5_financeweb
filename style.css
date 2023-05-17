@@ -1,0 +1,62 @@
+
+
+
+body
+{
+    background-image: url('bg.png');
+    background-color: aliceblue;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   
+}
+
+.wrapper
+{
+    display:flex;
+    flex-flow: row wrap;
+    text-align: center;
+}
+
+.wrapper> *
+{
+    padding: 10px;
+    margin: 10px;
+    flex: 1 100%;
+    border-radius: 15px;
+}
+
+.header
+{
+    background: #0e0046;
+    height: 100px;
+}
+
+img.icon
+{
+        position:absolute;
+        left: 780px;
+        top: 79px;
+}
+
+
+
+
+
+
+h1
+{
+    background-color: #0e0046;
+    color: white;
+    height: 70px;
+}
+
+h2
+{
+    background-color: #0e0046;
+    color: white;
+    text-align: center;
+}
+
+.footer{
+    background: #0e0046;
+    height: 30px;
+}
