@@ -6,6 +6,82 @@
   $exp_date_line = mysqli_query($con, "SELECT expensedate FROM expenses WHERE user_id = '$userid' GROUP BY expensedate");
   $exp_amt_line = mysqli_query($con, "SELECT SUM(expense) FROM expenses WHERE user_id = '$userid' GROUP BY expensedate");
 ?>
+
+<?php
+date_default_timezone_set("Asia/kolkata");
+$todayExp = $yesterdayExp = $weeklyExp = $monthlyExp = $yearlyExp = $totalExp = 0;
+
+$current_date = date("Y-m-d " , strtotime("now"));
+$yesterday_date = date("Y-m-d " , strtotime("yesterday"));
+$weekly_date = date("Y-m-d " , strtotime("-1 week"));
+$monthly_date = date("Y-m-d " , strtotime("-1 month"));
+$yearly_date =  date("Y-m-d " , strtotime("-1 year"));
+
+$todayExp = $yesterdayExp = $weeklyExp = $monthlyExp = $yearlyExp = $totalExp = 0;
+
+// Today's expense
+$sql_command_todayExp = "SELECT expense , expensedate FROM expenses Where expensedate= '$current_date' AND user_id = '$userid' GROUP BY expensedate";
+$result = mysqli_query($con ,$sql_command_todayExp);
+$rows =  mysqli_num_rows($result);
+
+if($rows > 0){
+    while ($rows = mysqli_fetch_assoc($result) ){
+        $todayExp += $rows["price"];
+    }
+}
+
+// total expense
+$sql_command_totalExp = "SELECT expense FROM expenses WHERE user_id = '$userid' GROUP BY expensedate";
+$result_t = mysqli_query($con , $sql_command_totalExp) ;
+$rows_t =  mysqli_num_rows($result_t);
+if($rows_t > 0){
+    while ($rows_t = mysqli_fetch_assoc($result_t) ){
+        $totalExp += $rows_t["expense"];
+    }
+}
+
+// Yesterday's Expense--------------------------------------------------------------------------------------------------------
+$sql_command_yesterdayExp = "SELECT expense , expensedate FROM expenses Where expensedate = '$yesterday_date' AND user_id = '$userid' GROUP BY expensedate";
+$result_y = mysqli_query($con ,$sql_command_yesterdayExp);
+$rows_y =  mysqli_num_rows($result_y);
+
+if($rows_y > 0){
+    while ($rows_y = mysqli_fetch_assoc($result_y) ){
+        $yesterdayExp += $rows_y["expense"];
+    }
+}
+
+// weekly expense------------------------------------------------------------------------------------------------------------
+$sql_command_weeklyExp = "SELECT expense , expensedate FROM expenses Where expensedate BETWEEN '$weekly_date' AND '$current_date' AND user_id = '$userid' GROUP BY expensedate";
+$result_w = mysqli_query($con , $sql_command_weeklyExp) ;
+$rows_w =  mysqli_num_rows($result_w);
+if($rows_w > 0){
+    while ($rows_w = mysqli_fetch_assoc($result_w) ){
+        $weeklyExp += $rows_w["expense"];
+    }
+}
+
+// monthly expense -----------------------------------------------------------------------------------------------------------
+$sql_command_monthlyExp = "SELECT expense , expensedate FROM expenses Where expensedate BETWEEN '$monthly_date' AND '$current_date' AND user_id = '$userid' GROUP BY expensedate";
+$result_m = mysqli_query($con , $sql_command_monthlyExp) ;
+$rows_m =  mysqli_num_rows($result_m);
+if($rows_m > 0){
+    while ($rows_m = mysqli_fetch_assoc($result_m) ){
+        $monthlyExp += $rows_m["expense"];
+    }
+}
+
+// yearly expense----------------------------------------------------------------------------------------------------------
+$sql_command_yearlyExp = "SELECT expense , expensedate  FROM expenses Where expensedate BETWEEN '$yearly_date' AND '$current_date' AND  user_id = '$userid' GROUP BY expensedate";
+$result_year = mysqli_query($con , $sql_command_yearlyExp) ;
+$rows_year =  mysqli_num_rows($result_year);
+if($rows_year > 0){
+    while($rows_year = mysqli_fetch_assoc($result_year)){
+        $yearlyExp += $rows_year['expense'];  
+    }
+}
+  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,6 +111,9 @@
     .card a:hover {
       color: #28a745;
       text-decoration: dotted;
+    }
+    body {
+     background-color: #222020;
     }
   </style>
 
@@ -119,7 +198,7 @@
           </div>
         </div>
 
-        <h3 class="mt-4">Full-Expense Report</h3>
+        <h3 class="mt-4">Graph Report</h3>
         <div class="row">
           <div class="col-md">
             <div class="card">
@@ -144,8 +223,88 @@
         </div>
 
 
-      </div>
-    </div>
+
+        <h3 class="mt-4">Full-Expense Report</h3>
+        <div class="row">
+          <div class="col-md">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title text-center">Total Expenses</h5>
+              </div>
+              <div class="card-body">
+              <h2 class="text-black"><?php echo $totalExp; ?></h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title text-center">Today Expenses</h5>
+              </div>
+              <div class="card-body">
+                <h2 class="text-black"><?php echo $todayExp; ?></h2>
+                <p class="text-black mb-0"><?php echo date("jS F " , strtotime("now")); ?></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title text-center">Yesterday Expenses</h5>
+              </div>
+              <div class="card-body">
+                <h2 class="text-black"><?php echo $yesterdayExp; ?></h2>
+                <p class="text-black mb-0"><?php echo date("jS F " , strtotime("yesterday")); ?></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title text-center">Weekly Expenses</h5>
+              </div>
+              <div class="card-body">
+                <h2 class="text-black"><?php echo $weeklyExp; ?></h2>
+                <p class="text-black mb-0"><?php echo date("jS F" , strtotime("-7 days")); echo " - " . date("jS F " , strtotime("now")); ?></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title text-center">Monthly Expenses</h5>
+              </div>
+              <div class="card-body">
+               <h2 class="text-black"><?php echo $monthlyExp; ?></h2>
+                <p class="text-black mb-0"><?php echo date("jS F" , strtotime("-30 days")); echo " - " . date("jS F " , strtotime("now")); ?></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title text-center">Yearly Expenses</h5>
+              </div>
+              <div class="card-body">
+                <h2 class="text-black"><?php echo $yearlyExp; ?></h2>
+                <p class="text-black mb-0"><?php echo date("d F Y" , strtotime("-1 year")); echo " - " . date("d F Y" , strtotime("now")); ?></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+        
+                    
+                    
     <!-- /#page-content-wrapper -->
 
   </div>
@@ -228,6 +387,7 @@
       }
     });
   </script>
+
 </body>
 
 </html>
