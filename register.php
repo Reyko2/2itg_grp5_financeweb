@@ -47,6 +47,9 @@ if (isset($_REQUEST['firstname'])) {
     <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
+     <!-- jQuery -->
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Main css -->
     <link rel="stylesheet" href="css/regstyle.css">
 </head>
@@ -70,7 +73,7 @@ if (isset($_REQUEST['firstname'])) {
                             <input type="email" class="form-input" name="email" id="email" placeholder="Your Email" required="required"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="password" id="password" placeholder="Password" required="required"/>
+                            <input type="password" class="form-input" name="password" id="password" placeholder="Password" required="required"/>
                             <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                         </div>
                         <div class="form-group">
