@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark navbar-expand-lg fixed-top navbar-custom" style="background: linear-gradient(90deg, #6fb1bf 32%, #0085ff 100%, #6fb1bf 100%), #0085ff;">
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top navbar-custom" style="background: linear-gradient(90deg, #6fb1bf 32%, #0085ff 100%, #6fb1bf 100%), #0085ff;">
         <div class="container"><a class="navbar-brand" href="homepage.php" style="font-size: 23px;margin-left: -27px;color: rgb(255,255,255);">TUSTOS</a><img class="img-fluid justify-content-xxl-center" src="assets/img/TUSTOS%20ICON.png" style="height: 50px;"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarResponsive"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
@@ -33,12 +33,6 @@
             <div class="container">
                 <h1 class="masthead-heading mb-0" style="font-family: Poppins, sans-serif;height: 140.2px;">What is Tustos?</h1>
                 <h2 class="masthead-subheading mb-0" style="height: 150.6px;font-family: 'Lexend Deca', sans-serif;">TUSTOS: Trackable User Spending Through Online Service</h2>
-                <button class="learn-more">
-                    <span class="circle" aria-hidden="true">
-                    <span class="icon arrow"></span>
-                    </span>
-                    <span class="button-text">Learn More</span>
-                  </button>
             </div>
         </div>
     </header>
