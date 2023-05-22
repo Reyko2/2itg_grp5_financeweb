@@ -7,6 +7,9 @@ if (isset($_REQUEST['firstname'])) {
     $lastname = stripslashes($_REQUEST['lastname']);
     $lastname = mysqli_real_escape_string($con, $lastname);
 
+    $pass1 = $_REQUEST['password'];
+    $pass2 = $_REQUEST['confirm_password'];
+
     $email = stripslashes($_REQUEST['email']);
 
     function emailExists($email, $con) {
@@ -22,7 +25,6 @@ if (isset($_REQUEST['firstname'])) {
         }
     }
 
-
     $password = stripslashes($_REQUEST['password']);
     $password = mysqli_real_escape_string($con, $password);
 
@@ -37,28 +39,29 @@ if (isset($_REQUEST['firstname'])) {
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Error!</strong> Email Has Already Been Used.
         </div></center>';
-        echo $errormsg;  
+        echo $errormsg;
     } 
     else 
     {
-        if ($_REQUEST['password'] != $_REQUEST['confirm_password']) 
+        if ($pass1 == $pass2) 
         {
-            $errormsg = '<center><div class="alert alert-danger alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Error!</strong> Please Re-enter Password and Confirm Password.
-            </div></center>';
-            echo $errormsg;  
+            $query = "INSERT into `users` (firstname, lastname, password, email, trn_date) VALUES ('$firstname','$lastname', '" . md5($password) . "', '$email', '$trn_date')";
+            $result = mysqli_query($con, $query);
+            header("Location: login.php");
         }
-        else 
-        {
-        $query = "INSERT into `users` (firstname, lastname, password, email, trn_date) VALUES ('$firstname','$lastname', '" . md5($password) . "', '$email', '$trn_date')";
-        $result = mysqli_query($con, $query);
-        header("Location: login.php");
-        }
+
+    
     }
-
-
   } 
+
+else
+  {
+    $errormsg2 = '<center><div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Error!</strong> Please Re-enter Password and Confirm Password.
+    </div></center>'; 
+    echo $errormsg2;    
+  }
 
 }
 ?>
