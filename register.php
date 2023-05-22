@@ -31,20 +31,7 @@ if (isset($_REQUEST['firstname'])) {
 
     $trn_date = date("Y-m-d H:i:s");
 
-    if ($_REQUEST['password'] != $_REQUEST['confirm_password']) 
-    {
-        $errormsg = '<center><div class="alert alert-danger alert-dismissible">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Error!</strong> Please Re-enter Password and Confirm Password.
-        </div></center>';
-        echo $errormsg;  
-    }
-        else 
-        {
-        $query = "INSERT into `users` (firstname, lastname, password, email, trn_date) VALUES ('$firstname','$lastname', '" . md5($password) . "', '$email', '$trn_date')";
-        $result = mysqli_query($con, $query);
-        header("Location: login.php");
-        }
+
 
     if (emailExists($email, $con)) 
     {
