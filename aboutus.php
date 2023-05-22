@@ -39,23 +39,6 @@
     <div class="d-flex justify-content-center p-4">
     <img src="images/v5_45.png" class="img-fluid" alt="Header Image">
     </div>
-
-    <div class="container text-center p-4 px-5">
-        <div class="row align-items-center">
-            <div class="col">
-                <div class="p-2 card bg1">
-                    <h3>Mission of TUSTOS</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                    </div>
-            </div>
-            <div class="col">
-                <div class="p-2 card bg1">
-                    <h3>How TUSTOS was formed</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                    </div>
-            </div>
-        </div>
-    </div>
     
     <div class="accordion justify-content-center w-75 mx-auto p-4">
         <div class="accordion-item">
@@ -65,10 +48,21 @@
             </button>
           </h2>
           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+
             <div class="accordion-body">
-              <strong>How do we do this?</strong> i dont know
+              <strong>What is TUSTOS?</strong>
+              <br> - TUSTOS: Trackable User Spending Through Online Service is a comprehensive financial tracking website that offers users various tools to manage their finances.
               <br>
-              <strong>Question 2?</strong> answer 2 
+              <br>
+              <strong>What are the features of TUSTOS?</strong>
+              <br> - TUSTOS currently has the following features available:
+                <ul>
+                  <li>A <b>Tracking</b> feature that monitors expenses.</li>
+                  <li>A <b>Financial Guide</b> that offers financial advice based on user data.</li>
+                  <li>The <b>Budget Manager</b> feature which aids in financial decisions.</li>
+                  <li>The <b>Reports</b> feature provides the user with detailed reports of their spending habits, income, and savings.</li>
+                  <li>The <b>Bill Tracking</b> feature that allows users to track their upcoming bills and dues to avoid late payments.</li>
+                </ul>
             </div>
           </div>
         </div>
@@ -80,29 +74,29 @@
         <div class="team-member">
             <div class="card">
             <img src="rico.jpg" alt="Team Member 1">
-            <h3>Rico</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3>Rico Nieto</h3>
+            <p>AKA Rico</p>
             </div>
         </div>
         <div class="team-member">
             <div class="card">
             <img src="images/v5_45.png" class="center" alt="Team Member 2">
-            <h3>Nike</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3>Nicholas Kerky Victoriano</h3>
+            <p>AKA Nike</p>
             </div>
         </div>
         <div class="team-member">
             <div class="card">
-            <img src="skychi.jpg" alt="Team Member 3">
-            <h3>Skychi</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <img src="jmevangelista.jpg" alt="Team Member 3">
+            <h3>Juan Miguel Evangelista</h3>
+            <p>AKA JM</p>
             </div>
         </div>
         <div class="team-member">
             <div class="card">
-            <img src="pique.jpg" alt="Team Member 4">
-            <h3>Pique</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <img src="enriqueresurreccion.jpg" alt="Team Member 4">
+            <h3>Enrique Resurreccion</h3>
+            <p>AKA Pique</p>
             </div>
         </div>
         </div>
@@ -110,6 +104,6 @@
     </body>
 
     <footer>
-        <p>&copy; 2023 TUSTOS</p>
+        <p>&copy; 2023 TUSTOS, a Project by 2ITG</p>
     </footer>
     </html>
