@@ -80,6 +80,7 @@ if (isset($_POST['but_upload'])) {
             <div class="list-group list-group-flush">
                 <a href="index.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="home"></span> Dashboard</a>
                 <a href="add_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="dollar-sign"></span> Add Budget</a>
+                <a href="manage_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="bar-chart-2"></span> Manage Budget</a>
                 <a href="add_expense.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Expenses</a>
                 <a href="manage_expense.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action "><span data-feather="bar-chart"></span> Manage Expenses</a>
             </div>
