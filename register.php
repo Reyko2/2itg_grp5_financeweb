@@ -25,6 +25,20 @@ if (isset($_REQUEST['firstname'])) {
   } else {
     echo ("ERROR: Please Check Your Password & Confirmation password");
   }
+
+  $sql="SELECT * from users where email='$email'";
+
+      $res=mysqli_query($mysqli,$sql);
+
+      if (mysqli_num_rows($res) > 0) {
+        
+        $row = mysqli_fetch_assoc($res);
+        if($email==isset($row['email']))
+        {
+            	echo "email already exists";
+        }
+      }
+
 }
 ?>
 <!DOCTYPE html>

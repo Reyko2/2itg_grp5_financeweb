@@ -17,10 +17,9 @@ $weekly_date = date("Y-m-d " , strtotime("-1 week"));
 $monthly_date = date("Y-m-d " , strtotime("-1 month"));
 $yearly_date =  date("Y-m-d " , strtotime("-1 year"));
 
-$todayExp = $yesterdayExp = $weeklyExp = $monthlyExp = $yearlyExp = $totalExp = 0;
 
 // Today's expense
-$sql_command_todayExp = "SELECT expense , expensedate FROM expenses WHERE expensedate= '$current_date' AND user_id = '$userid' GROUP BY expensedate";
+$sql_command_todayExp = "SELECT expense , expensedate FROM expenses WHERE expensedate = '$current_date' AND user_id = '$userid'";
 $result = mysqli_query($con ,$sql_command_todayExp);
 $rows =  mysqli_num_rows($result);
 
@@ -31,7 +30,7 @@ if($rows > 0){
 }
 
 // total expense
-$sql_command_totalExp = "SELECT expense FROM expenses WHERE user_id = '$userid' GROUP BY expensedate";
+$sql_command_totalExp = "SELECT expense FROM expenses WHERE user_id = '$userid'";
 $result_t = mysqli_query($con , $sql_command_totalExp) ;
 $rows_t =  mysqli_num_rows($result_t);
 if($rows_t > 0){
@@ -41,7 +40,7 @@ if($rows_t > 0){
 }
 
 // Yesterday's Expense
-$sql_command_yesterdayExp = "SELECT expense , expensedate FROM expenses WHERE expensedate = '$yesterday_date' AND user_id = '$userid' GROUP BY expensedate";
+$sql_command_yesterdayExp = "SELECT expense , expensedate FROM expenses WHERE expensedate = '$yesterday_date' AND user_id = '$userid'";
 $result_y = mysqli_query($con ,$sql_command_yesterdayExp);
 $rows_y =  mysqli_num_rows($result_y);
 
@@ -52,7 +51,7 @@ if($rows_y > 0){
 }
 
 // weekly expense
-$sql_command_weeklyExp = "SELECT expense , expensedate FROM expenses WHERE expensedate BETWEEN '$weekly_date' AND '$current_date' AND user_id = '$userid' GROUP BY expensedate";
+$sql_command_weeklyExp = "SELECT expense , expensedate FROM expenses WHERE expensedate BETWEEN '$weekly_date' AND '$current_date' AND user_id = '$userid'";
 $result_w = mysqli_query($con , $sql_command_weeklyExp) ;
 $rows_w =  mysqli_num_rows($result_w);
 if($rows_w > 0){
@@ -62,7 +61,7 @@ if($rows_w > 0){
 }
 
 // monthly expense 
-$sql_command_monthlyExp = "SELECT expense , expensedate FROM expenses WHERE expensedate BETWEEN '$monthly_date' AND '$current_date' AND user_id = '$userid' GROUP BY expensedate";
+$sql_command_monthlyExp = "SELECT expense , expensedate FROM expenses WHERE expensedate BETWEEN '$monthly_date' AND '$current_date' AND user_id = '$userid'";
 $result_m = mysqli_query($con , $sql_command_monthlyExp) ;
 $rows_m =  mysqli_num_rows($result_m);
 if($rows_m > 0){
@@ -72,7 +71,7 @@ if($rows_m > 0){
 }
 
 // yearly expense
-$sql_command_yearlyExp = "SELECT expense , expensedate  FROM expenses WHERE expensedate BETWEEN '$yearly_date' AND '$current_date' AND  user_id = '$userid' GROUP BY expensedate";
+$sql_command_yearlyExp = "SELECT expense , expensedate  FROM expenses WHERE expensedate BETWEEN '$yearly_date' AND '$current_date' AND  user_id = '$userid'";
 $result_year = mysqli_query($con , $sql_command_yearlyExp) ;
 $rows_year =  mysqli_num_rows($result_year);
 if($rows_year > 0){
@@ -84,6 +83,12 @@ if($rows_year > 0){
 $tips="";
 if($todayExp = 0){
   $tips = "You have not spent today!";
+}
+if($totalExp > 4000){
+  $tips = "Spent too much brother";
+}
+if($yearlyExp > 3000){
+  $tips = "Goodjob, you spent alot this year";
 }
   ?>
 
