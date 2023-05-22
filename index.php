@@ -89,8 +89,41 @@ if($rows_year > 0){
     }
 }
 
+//graph check
+$exp_amt_line_g = "SELECT expensedate, SUM(expense) AS total_expense FROM expenses WHERE user_id = '$userid' GROUP BY expensedate ORDER BY expensedate";
+$result_g = mysqli_query($con, $exp_amt_line_g);
+$data_g = array();
+while ($row_g = mysqli_fetch_assoc($result_g)) {
+    $data_g[] = $row_g;
+}
+
+// Check if the graph is increasing or decreasing
+$isIncreasing = true;
+$isDecreasing = true;
+$totalDataPoints = count($data_g);
+for ($i = 1; $i < $totalDataPoints; $i++) {
+    if ($data_g[$i]['total_expense'] > $data_g[$i - 1]['total_expense']) {
+        $isDecreasing = false;
+    } elseif ($data_g[$i]['total_expense'] < $data_g[$i - 1]['total_expense']) {
+        $isIncreasing = false;
+    }
+}
+
 $tips="";
+$tips2="";
+$tips3="";
 $tips = ($todayExp > 0) ? "You have spent today!" : "You have not spent today!";
+$tips2 = ($todayExp > $todayBudget) ? "<strong>You're over today's budget</strong><br></br>Analyze the reasons behind the overspending. Determine if it was due to an unexpected expense or if there is a pattern of consistently exceeding the budget." : "<strong>You're within budget</strong><br></br>Congratulations! We encourage maintaining this responsible spending behavior. Suggest continuing to track expenses, sticking to the budget, and considering saving any remaining funds for future needs or unexpected expenses.";
+
+// graph result
+if ($isIncreasing) {
+   $tips3 = "Your spending is increasing overtime, check and manage your expenses";
+} elseif ($isDecreasing) {
+  $tips3 = "Your spending less this time, keep it up and you'll increase your budget over time"; 
+} else {
+  $tips3 = "I guess?";
+}
+
 
 
 
@@ -115,9 +148,60 @@ $tips = ($todayExp > 0) ? "You have spent today!" : "You have not spent today!";
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style2.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-  <!-- Feather JS for Icons -->
+
+  <!-- JS scripts -->
   <script src="js/feather.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+          <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          var tipsArray = [
+            '<?php echo $tips ?>',
+            '<?php echo $tips3 ?>'
+          ];
+          var currentIndex = 0;
+
+          // Function to show the tips and fade them out after 3 seconds
+          function showTip() {
+            document.getElementById("tips").innerHTML = '<center>' + tipsArray[currentIndex] + '</center>';
+            fadeIn();
+            setTimeout(function() {
+              fadeOut();
+              currentIndex = (currentIndex + 1) % tipsArray.length; // Move to the next tip in the array
+              setTimeout(showTip, 3000); // Recursively call the function to show the next tip
+            }, 10000);
+          }
+
+          // Function to fade in the tips
+          function fadeIn() {
+            var tipsElement = document.getElementById("tips");
+            tipsElement.style.opacity = "0";
+            tipsElement.style.transition = "opacity 0.5s";
+            tipsElement.style.display = "block";
+            setTimeout(function() {
+              tipsElement.style.opacity = "1";
+            }, 10);
+          }
+
+          // Function to fade out the tips
+          function fadeOut() {
+            var tipsElement = document.getElementById("tips");
+            tipsElement.style.opacity = "0";
+            setTimeout(function() {
+              tipsElement.style.display = "none";
+            }, 500);
+          }
+
+          showTip(); // Start showing the tips
+        });
+        </script>
+
+
+
+
   <style>
     .card a {
       color: #000;
@@ -127,9 +211,6 @@ $tips = ($todayExp > 0) ? "You have spent today!" : "You have not spent today!";
     .card a:hover {
       color: #28a745;
       text-decoration: dotted;
-    }
-    body {
-    
     }
   </style>
 
@@ -191,10 +272,28 @@ $tips = ($todayExp > 0) ? "You have spent today!" : "You have not spent today!";
       <div class="container-fluid">
         <div class="fade-in">
           <h1><center>Hello, <?php echo $username ?></center></h1>
-          <h5><center><?php echo $tips ?></center></h5>
+          <h5 id="tips"><center><?php echo $tips ?></center></h5>
           <br></br>
 
-              <div class="text-center">
+          <!-- Modal -->
+            <div class="modal fade" id="tipsModal" tabindex="-1" role="dialog" aria-labelledby="tipsModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="tipsModalLabel">Tips</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <?php echo $tips2 ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="text-center">
           <div class="card gradient-10 mx-auto" style="max-width: 300px;" center>
             <div class="card-body">
               <h3 class="card-title text-white">Today's Budget</h3>
@@ -206,7 +305,7 @@ $tips = ($todayExp > 0) ? "You have spent today!" : "You have not spent today!";
             </div>
           </div>
         </div>
-  </div>
+      </div>
         </div>
         <h3 class="mt-4">Dashboard</h3>
         <div class="row">
@@ -426,6 +525,7 @@ $tips = ($todayExp > 0) ? "You have spent today!" : "You have not spent today!";
       }
     });
   </script>
+
 
 </body>
 
