@@ -15,7 +15,11 @@ if (isset($_POST['email'])) {
     $_SESSION['email'] = $email;
     header("Location: index.php");
   } else {
-    $errormsg  = "Wrong";
+	$errormsg = '<center><div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Error!</strong> Incorrect Email or Password!
+    </div></center>';
+    echo $errormsg;
   }
 } else {
 }
