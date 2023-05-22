@@ -20,13 +20,13 @@
           </button>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+                <a class="nav-link active text-light" aria-current="page" href="index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="aboutus.html">About Us</a>
+                <a class="nav-link text-light" href="aboutus.php">About Us</a>
               </li>
             </ul>
-            <a href="#" class="btn btn-light btn-outline-dark">Log In</a>
+            <a href="login.php" class="btn btn-light btn-outline-dark">Log In</a>
         </div>
       </nav>
 
