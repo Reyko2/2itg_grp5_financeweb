@@ -12,8 +12,9 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM budget WHERE user_id = '$userid
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>budget Manager - Dashboard</title>
-
+    <title>Manage Budget</title>
+    <link rel = "icon" href = "icon\TUSTOS ICON.png" type = "image/x-icon">
+    
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -42,8 +43,8 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM budget WHERE user_id = '$userid
                 <a href="index.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="home"></span> Dashboard</a>
                 <a href="add_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="dollar-sign"></span> Add Budget</a>
                 <a href="manage_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action sidebar-active"><span data-feather="bar-chart-2"></span> Manage Budget</a>
-                <a href="add_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Expenses</a>
-                <a href="manage_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="bar-chart"></span> Manage Expenses</a>
+                <a href="add_expense.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Expenses</a>
+                <a href="manage_expense.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="bar-chart"></span> Manage Expenses</a>
             </div>
             <div class="sidebar-heading">Settings </div>
             <div class="list-group list-group-flush">

@@ -81,7 +81,8 @@ if (isset($_GET['delete'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>TUSTOS</title>
+    <title>Add Budget</title>
+    <link rel = "icon" href = "icon\TUSTOS ICON.png" type = "image/x-icon">
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">

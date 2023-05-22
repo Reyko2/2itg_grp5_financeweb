@@ -29,6 +29,8 @@ if (isset($_POST['email'])) {
 <html lang="en">
   <head>
   	<title>TUSTOS Login Page</title>
+	<link rel = "icon" href = "icon\TUSTOS ICON.png" type = "image/x-icon">
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 

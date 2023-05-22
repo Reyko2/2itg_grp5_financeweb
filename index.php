@@ -140,7 +140,8 @@ if ($isIncreasing) {
   <meta name="author" content="">
 
 
-  <title>TUSTOS</title>
+  <title>Dashboard</title>
+  <link rel = "icon" href = "icon\TUSTOS ICON.png" type = "image/x-icon">
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">

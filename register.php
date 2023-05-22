@@ -73,6 +73,7 @@ else
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TUSTOS Register</title>
+    <link rel = "icon" href = "icon\TUSTOS ICON.png" type = "image/x-icon">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">

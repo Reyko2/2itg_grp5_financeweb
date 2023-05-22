@@ -99,7 +99,8 @@ if (isset($_GET['delete'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Expense Manager - Dashboard</title>
+    <title>Add Expense</title>
+    <link rel = "icon" href = "icon\TUSTOS ICON.png" type = "image/x-icon">
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">

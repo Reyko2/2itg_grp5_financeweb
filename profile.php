@@ -52,8 +52,9 @@ if (isset($_POST['but_upload'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Expense Manager - Dashboard</title>
-
+    <title>Profile</title>
+    <link rel = "icon" href = "icon\TUSTOS ICON.png" type = "image/x-icon">
+    
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
