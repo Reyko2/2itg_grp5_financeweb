@@ -20,13 +20,13 @@ $yearly_date =  date("Y-m-d " , strtotime("-1 year"));
 $todayExp = $yesterdayExp = $weeklyExp = $monthlyExp = $yearlyExp = $totalExp = 0;
 
 // Today's expense
-$sql_command_todayExp = "SELECT expense , expensedate FROM expenses Where expensedate= '$current_date' AND user_id = '$userid' GROUP BY expensedate";
+$sql_command_todayExp = "SELECT expense , expensedate FROM expenses WHERE expensedate= '$current_date' AND user_id = '$userid' GROUP BY expensedate";
 $result = mysqli_query($con ,$sql_command_todayExp);
 $rows =  mysqli_num_rows($result);
 
 if($rows > 0){
     while ($rows = mysqli_fetch_assoc($result) ){
-        $todayExp += $rows["price"];
+        $todayExp += $rows["expense"];
     }
 }
 
@@ -40,8 +40,8 @@ if($rows_t > 0){
     }
 }
 
-// Yesterday's Expense--------------------------------------------------------------------------------------------------------
-$sql_command_yesterdayExp = "SELECT expense , expensedate FROM expenses Where expensedate = '$yesterday_date' AND user_id = '$userid' GROUP BY expensedate";
+// Yesterday's Expense
+$sql_command_yesterdayExp = "SELECT expense , expensedate FROM expenses WHERE expensedate = '$yesterday_date' AND user_id = '$userid' GROUP BY expensedate";
 $result_y = mysqli_query($con ,$sql_command_yesterdayExp);
 $rows_y =  mysqli_num_rows($result_y);
 
@@ -51,8 +51,8 @@ if($rows_y > 0){
     }
 }
 
-// weekly expense------------------------------------------------------------------------------------------------------------
-$sql_command_weeklyExp = "SELECT expense , expensedate FROM expenses Where expensedate BETWEEN '$weekly_date' AND '$current_date' AND user_id = '$userid' GROUP BY expensedate";
+// weekly expense
+$sql_command_weeklyExp = "SELECT expense , expensedate FROM expenses WHERE expensedate BETWEEN '$weekly_date' AND '$current_date' AND user_id = '$userid' GROUP BY expensedate";
 $result_w = mysqli_query($con , $sql_command_weeklyExp) ;
 $rows_w =  mysqli_num_rows($result_w);
 if($rows_w > 0){
@@ -61,8 +61,8 @@ if($rows_w > 0){
     }
 }
 
-// monthly expense -----------------------------------------------------------------------------------------------------------
-$sql_command_monthlyExp = "SELECT expense , expensedate FROM expenses Where expensedate BETWEEN '$monthly_date' AND '$current_date' AND user_id = '$userid' GROUP BY expensedate";
+// monthly expense 
+$sql_command_monthlyExp = "SELECT expense , expensedate FROM expenses WHERE expensedate BETWEEN '$monthly_date' AND '$current_date' AND user_id = '$userid' GROUP BY expensedate";
 $result_m = mysqli_query($con , $sql_command_monthlyExp) ;
 $rows_m =  mysqli_num_rows($result_m);
 if($rows_m > 0){
@@ -71,14 +71,19 @@ if($rows_m > 0){
     }
 }
 
-// yearly expense----------------------------------------------------------------------------------------------------------
-$sql_command_yearlyExp = "SELECT expense , expensedate  FROM expenses Where expensedate BETWEEN '$yearly_date' AND '$current_date' AND  user_id = '$userid' GROUP BY expensedate";
+// yearly expense
+$sql_command_yearlyExp = "SELECT expense , expensedate  FROM expenses WHERE expensedate BETWEEN '$yearly_date' AND '$current_date' AND  user_id = '$userid' GROUP BY expensedate";
 $result_year = mysqli_query($con , $sql_command_yearlyExp) ;
 $rows_year =  mysqli_num_rows($result_year);
 if($rows_year > 0){
     while($rows_year = mysqli_fetch_assoc($result_year)){
         $yearlyExp += $rows_year['expense'];  
     }
+}
+
+$tips="";
+if($todayExp = 0){
+  $tips = "You have not spent today!";
 }
   ?>
 
@@ -92,13 +97,15 @@ if($rows_year > 0){
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Expense Manager - Dashboard</title>
+
+  <title>TUSTOS</title>
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/style2.css" rel="stylesheet">
 
   <!-- Feather JS for Icons -->
   <script src="js/feather.min.js"></script>
@@ -113,7 +120,7 @@ if($rows_year > 0){
       text-decoration: dotted;
     }
     body {
-     background-color: #222020;
+    
     }
   </style>
 
@@ -125,7 +132,7 @@ if($rows_year > 0){
 
     <!-- Sidebar -->
     <div class="border-right" id="sidebar-wrapper">
-      <div class="user">
+      <div class="user" style = "background-color:#e1ffff">
         <img class="img img-fluid rounded-circle" src="<?php echo $userprofile ?>" width="120">
         <h5><?php echo $username ?></h5>
         <p><?php echo $useremail ?></p>
@@ -171,6 +178,10 @@ if($rows_year > 0){
       </nav>
 
       <div class="container-fluid">
+        <div class="fade-in">
+          <h1><center>Hello, <?php echo $username ?></center></h1>
+          <h5><center><?php echo $tips ?></center></h5>
+        </div>
         <h3 class="mt-4">Dashboard</h3>
         <div class="row">
           <div class="col-md">
@@ -198,6 +209,85 @@ if($rows_year > 0){
           </div>
         </div>
 
+        <h3 class="mt-4">Full-Expense Report</h3>
+        <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-10">
+                            <div class="card-body">
+                                <h3 class="card-title text-white">Today's Expense</h3>
+                                <div class="d-inline-block">
+                                    <h2 class="text-white"><?php echo $todayExp; ?></h2>
+                                    <p class="text-white mb-0"><?php echo date("jS F " , strtotime("now")); ?></p>
+                                </div>
+                                <span class="float-right display-5 opacity-5"><i class="fa fa-usd"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-10">
+                            <div class="card-body">
+                                <h3 class="card-title text-white">Yesterday's Expense</h3>
+                                <div class="d-inline-block">
+                                    <h2 class="text-white"><?php echo $yesterdayExp; ?></h2>
+                                    <p class="text-white mb-0"><?php echo date("jS F " , strtotime("yesterday")); ?></p>
+                                </div>
+                                <span class="float-right display-5 opacity-5"><i class="fa fa-usd"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-10">
+                            <div class="card-body">
+                                <h3 class="card-title text-white">Last 7 Day's Expense</h3>
+                                <div class="d-inline-block">
+                                    <h2 class="text-white"><?php echo $weeklyExp; ?></h2>
+                                    <p class="text-white mb-0"><?php echo date("jS F" , strtotime("-7 days")); echo " - " . date("jS F " , strtotime("now")); ?></p>
+                                </div>
+                                <span class="float-right display-5 opacity-5"><i class="fa fa-dollar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-10">
+                            <div class="card-body">
+                                <h3 class="card-title text-white">Last 30 Day's Expense</h3>
+                                <div class="d-inline-block">
+                                    <h2 class="text-white"><?php echo $monthlyExp; ?></h2>
+                                    <p class="text-white mb-0"><?php echo date("jS F" , strtotime("-30 days")); echo " - " . date("jS F " , strtotime("now")); ?></p>
+                                </div>
+                                <span class="float-right display-5 opacity-5"><i class="fa fa-usd"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "col-3">
+
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-10">
+                            <div class="card-body">
+                                <h3 class="card-title text-white">One Year Expense</h3>
+                                <div class="d-inline-block">
+                                    <h2 class="text-white"><?php echo $yearlyExp; ?></h2>
+                                    <p class="text-white mb-0"><?php echo date("d F Y" , strtotime("-1 year")); echo " - " . date("d F Y" , strtotime("now")); ?></p>
+                                </div>
+                                <span class="float-right display-5 opacity-5"><i class="fa fa-usd"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-10">
+                            <div class="card-body">
+                                <h3 class="card-title text-white">Total Expense</h3>
+                                <div class="d-inline-block">
+                                    <h2 class="text-white"><?php echo $totalExp; ?></h2>
+                                </div>
+                                <span class="float-right display-5 opacity-5"><i class="fa fa-usd"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
         <h3 class="mt-4">Graph Report</h3>
         <div class="row">
           <div class="col-md">
@@ -224,88 +314,8 @@ if($rows_year > 0){
 
 
 
-        <h3 class="mt-4">Full-Expense Report</h3>
-        <div class="row">
-          <div class="col-md">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title text-center">Total Expenses</h5>
-              </div>
-              <div class="card-body">
-              <h2 class="text-black"><?php echo $totalExp; ?></h2>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title text-center">Today Expenses</h5>
-              </div>
-              <div class="card-body">
-                <h2 class="text-black"><?php echo $todayExp; ?></h2>
-                <p class="text-black mb-0"><?php echo date("jS F " , strtotime("now")); ?></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title text-center">Yesterday Expenses</h5>
-              </div>
-              <div class="card-body">
-                <h2 class="text-black"><?php echo $yesterdayExp; ?></h2>
-                <p class="text-black mb-0"><?php echo date("jS F " , strtotime("yesterday")); ?></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title text-center">Weekly Expenses</h5>
-              </div>
-              <div class="card-body">
-                <h2 class="text-black"><?php echo $weeklyExp; ?></h2>
-                <p class="text-black mb-0"><?php echo date("jS F" , strtotime("-7 days")); echo " - " . date("jS F " , strtotime("now")); ?></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title text-center">Monthly Expenses</h5>
-              </div>
-              <div class="card-body">
-               <h2 class="text-black"><?php echo $monthlyExp; ?></h2>
-                <p class="text-black mb-0"><?php echo date("jS F" , strtotime("-30 days")); echo " - " . date("jS F " , strtotime("now")); ?></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title text-center">Yearly Expenses</h5>
-              </div>
-              <div class="card-body">
-                <h2 class="text-black"><?php echo $yearlyExp; ?></h2>
-                <p class="text-black mb-0"><?php echo date("d F Y" , strtotime("-1 year")); echo " - " . date("d F Y" , strtotime("now")); ?></p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-
-
-
         
-                    
-                    
-    <!-- /#page-content-wrapper -->
+              
 
   </div>
   <!-- /#wrapper -->
@@ -367,7 +377,7 @@ if($rows_year > 0){
                     echo '"' . $d['SUM(expense)'] . '",';
                   } ?>],
           borderColor: [
-            '#adb5bd'
+            '#006fff'
           ],
           backgroundColor: [
             '#6f42c1',

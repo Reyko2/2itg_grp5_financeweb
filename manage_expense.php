@@ -19,6 +19,7 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM expenses WHERE user_id = '$user
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/style2.css" rel="stylesheet">
 
     <!-- Feather JS for Icons -->
     <script src="js/feather.min.js"></script>
@@ -83,8 +84,8 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM expenses WHERE user_id = '$user
                 <hr>
                 <div class="row justify-content-center">
 
-                    <div class="col-md-6">
-                        <table class="table table-hover table-bordered">
+                    <div class="container bg-light shadow mt-5">
+                        <table class="table table-bordered table-hover border-primary">
                             <thead>
                                 <tr class="text-center">
                                     <th>#</th>
@@ -98,8 +99,8 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM expenses WHERE user_id = '$user
                             <?php $count=1; while ($row = mysqli_fetch_array($exp_fetched)) { ?>
                                 <tr>
                                     <td><?php echo $count;?></td>
-                                    <td>$<?php echo $row['expensedate']; ?></td>
-                                    <td><?php echo '$'.$row['expense']; ?></td>
+                                    <td><?php echo $row['expensedate']; ?></td>
+                                    <td><?php echo $row['expense']; ?></td>
                                     <td><?php echo $row['expensecategory']; ?></td>
                                     <td class="text-center">
                                         <a href="add_expense.php?edit=<?php echo $row['expense_id']; ?>" class="btn btn-primary btn-sm" style="border-radius:0%;">Edit</a>
@@ -111,6 +112,7 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM expenses WHERE user_id = '$user
                             <?php $count++; } ?>
                         </table>
                     </div>
+                    
 
                 </div>
             </div>
