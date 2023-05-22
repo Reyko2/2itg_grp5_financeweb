@@ -8,7 +8,19 @@ if (isset($_REQUEST['firstname'])) {
     $lastname = mysqli_real_escape_string($con, $lastname);
 
     $email = stripslashes($_REQUEST['email']);
-    $email = mysqli_real_escape_string($con, $email);
+
+    function emailExists($email, $con) {
+        $email = $con->real_escape_string($email);
+    
+        $sql = "SELECT email FROM users WHERE email = '$email'";
+        $result = $con->query($sql);
+    
+        if ($result->num_rows > 0) {
+            return true; // Email already exists
+        } else {
+            return false; // Email does not exist
+        }
+    }
 
 
     $password = stripslashes($_REQUEST['password']);
@@ -20,16 +32,35 @@ if (isset($_REQUEST['firstname'])) {
     $query = "INSERT into `users` (firstname, lastname, password, email, trn_date) VALUES ('$firstname','$lastname', '" . md5($password) . "', '$email', '$trn_date')";
     $result = mysqli_query($con, $query);
 
-    if ($result) {
-      header("Location: login.php");
+    if (emailExists($email, $con)) 
+    {
+        $errormsg = '<center><div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> Email Has Already Been Used.
+        </div></center>';
+        echo $errormsg;  
+        header("location: register.php");
+    } 
+    else 
+    {
+        if ($result) 
+        {
+          header("Location: login.php");
+        }
+    
+        else 
+        {
+          $errormsg = '<center><div class="alert alert-danger alert-dismissible">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Error!</strong> Please Re-enter Password and Confirm Password.
+          </div></center>';
+          echo $errormsg;  
+        }
     }
-  } else 
-  {
-	$errormsg = '<center><div class="alert alert-danger alert-dismissible">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Error!</strong> Please Re-enter Password and Confirm Password.
-    </div></center>';
-    echo $errormsg;  }
+
+
+  } 
+
 }
 ?>
 
