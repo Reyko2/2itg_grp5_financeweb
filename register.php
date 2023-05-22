@@ -74,7 +74,6 @@ if (isset($_REQUEST['firstname'])) {
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-input" name="password" id="password" placeholder="Password" required="required"/>
-                            <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-input" name="confirm_password" id="confirm_password" placeholder="Confirm password" required="required"/>
