@@ -8,8 +8,9 @@
 ?>
 
 <?php
-date_default_timezone_set("Asia/kolkata");
+date_default_timezone_set("Asia/Manila");
 $todayExp = $yesterdayExp = $weeklyExp = $monthlyExp = $yearlyExp = $totalExp = 0;
+$previoustodayExp = $previousyesterdayExp = $previousweeklyExp = $previousmonthlyExp = $previousyearlyExp = $previousTotalExp = 0;
 
 $current_date = date("Y-m-d " , strtotime("now"));
 $yesterday_date = date("Y-m-d " , strtotime("yesterday"));
@@ -19,13 +20,13 @@ $yearly_date =  date("Y-m-d " , strtotime("-1 year"));
 
 
 // Today's expense
-$sql_command_todayExp = "SELECT expense , expensedate FROM expenses WHERE expensedate = '$current_date' AND user_id = '$userid'";
-$result = mysqli_query($con ,$sql_command_todayExp);
-$rows =  mysqli_num_rows($result);
+$sql_command_todayExp = "SELECT expense, expensedate FROM expenses WHERE expensedate = '$current_date' AND user_id = '$userid'";
+$result_today = mysqli_query($con, $sql_command_todayExp);
+$rows_today = mysqli_num_rows($result_today);
 
-if($rows > 0){
-    while ($rows = mysqli_fetch_assoc($result) ){
-        $todayExp += $rows["expense"];
+if ($rows_today > 0) {
+    while ($row_today = mysqli_fetch_assoc($result_today)) {
+        $todayExp += $row_today["expense"];
     }
 }
 
@@ -34,19 +35,21 @@ $sql_command_totalExp = "SELECT expense FROM expenses WHERE user_id = '$userid'"
 $result_t = mysqli_query($con , $sql_command_totalExp) ;
 $rows_t =  mysqli_num_rows($result_t);
 if($rows_t > 0){
+  $previousTotalExp = $totalExp;
+
     while ($rows_t = mysqli_fetch_assoc($result_t) ){
         $totalExp += $rows_t["expense"];
     }
 }
 
-// Yesterday's Expense
-$sql_command_yesterdayExp = "SELECT expense , expensedate FROM expenses WHERE expensedate = '$yesterday_date' AND user_id = '$userid'";
-$result_y = mysqli_query($con ,$sql_command_yesterdayExp);
-$rows_y =  mysqli_num_rows($result_y);
+//Yesterday's expense
+$sql_command_yesterdayExp = "SELECT expense, expensedate FROM expenses WHERE expensedate = '$yesterday_date' AND user_id = '$userid'";
+$result_yesterday = mysqli_query($con, $sql_command_yesterdayExp);
+$rows_yesterday = mysqli_num_rows($result_yesterday);
 
-if($rows_y > 0){
-    while ($rows_y = mysqli_fetch_assoc($result_y) ){
-        $yesterdayExp += $rows_y["expense"];
+if ($rows_yesterday > 0) {
+    while ($row_yesterday = mysqli_fetch_assoc($result_yesterday)) {
+        $yesterdayExp += $row_yesterday["expense"];
     }
 }
 
@@ -81,15 +84,10 @@ if($rows_year > 0){
 }
 
 $tips="";
-if($todayExp = 0){
-  $tips = "You have not spent today!";
-}
-if($totalExp > 4000){
-  $tips = "Spent too much brother";
-}
-if($yearlyExp > 3000){
-  $tips = "Goodjob, you spent alot this year";
-}
+$tips = ($todayExp > 0) ? "You have spent today!" : "You have not spent today!";
+
+
+
   ?>
 
 <!DOCTYPE html>
@@ -243,7 +241,7 @@ if($yearlyExp > 3000){
                     <div class="col-lg-3 col-sm-6">
                         <div class="card gradient-10">
                             <div class="card-body">
-                                <h3 class="card-title text-white">Last 7 Day's Expense</h3>
+                                <h3 class="card-title text-white">Last Week's Expense</h3>
                                 <div class="d-inline-block">
                                     <h2 class="text-white"><?php echo $weeklyExp; ?></h2>
                                     <p class="text-white mb-0"><?php echo date("jS F" , strtotime("-7 days")); echo " - " . date("jS F " , strtotime("now")); ?></p>
@@ -255,7 +253,7 @@ if($yearlyExp > 3000){
                     <div class="col-lg-3 col-sm-6">
                         <div class="card gradient-10">
                             <div class="card-body">
-                                <h3 class="card-title text-white">Last 30 Day's Expense</h3>
+                                <h3 class="card-title text-white">Last Month's Expense</h3>
                                 <div class="d-inline-block">
                                     <h2 class="text-white"><?php echo $monthlyExp; ?></h2>
                                     <p class="text-white mb-0"><?php echo date("jS F" , strtotime("-30 days")); echo " - " . date("jS F " , strtotime("now")); ?></p>
@@ -264,13 +262,11 @@ if($yearlyExp > 3000){
                             </div>
                         </div>
                     </div>
-                    <div class = "col-3">
-
-                    </div>
+                    
                     <div class="col-lg-3 col-sm-6">
                         <div class="card gradient-10">
                             <div class="card-body">
-                                <h3 class="card-title text-white">One Year Expense</h3>
+                                <h3 class="card-title text-white">Yearly Expense</h3>
                                 <div class="d-inline-block">
                                     <h2 class="text-white"><?php echo $yearlyExp; ?></h2>
                                     <p class="text-white mb-0"><?php echo date("d F Y" , strtotime("-1 year")); echo " - " . date("d F Y" , strtotime("now")); ?></p>
@@ -279,6 +275,7 @@ if($yearlyExp > 3000){
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-3 col-sm-6">
                         <div class="card gradient-10">
                             <div class="card-body">
@@ -290,6 +287,10 @@ if($yearlyExp > 3000){
                             </div>
                         </div>
                     </div>
+                    
+
+                    
+                    
                 </div>
                 
 

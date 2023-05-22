@@ -6,33 +6,41 @@
     <title>About the Team</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style-about.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lexend+Deca&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
 </head>
 
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
-    <nav class="navbar navbar-custom navbar-expand-lg">
-        <div class="container-fluid">
-            <img src="assets/img/TUSTOS ICON.png" style="width: 3%; height: auto;" alt="Tustos Logo">
-          <a class="navbar-brand text-light" href="#">TUSTOS</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active text-light" aria-current="page" href="index.php">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="aboutus.php">About Us</a>
-              </li>
-            </ul>
-            <a href="login.php" class="btn btn-light btn-outline-dark">Log In</a>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top navbar-custom" style="background: linear-gradient(90deg, #6fb1bf 32%, #0085ff 100%, #6fb1bf 100%), #0085ff;">
+        <div class="container"><a class="navbar-brand" href="homepage.php" style="font-size: 23px;margin-left: -27px;color: rgb(255,255,255);">TUSTOS</a><img class="img-fluid justify-content-xxl-center" src="assets/img/TUSTOS%20ICON.png" style="height: 50px;"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarResponsive"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="aboutus.php" style="color: rgb(255,255,255);font-size: 14.8px;width: 114.938px;text-align: center;">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.php" style="color: rgb(255,255,255);font-size: 14.8px;width: 85.938px;text-align: center;">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php" style="color: rgb(255,255,255);font-size: 14.8px;width: 85.938px;text-align: center;">Log In</a></li>
+                </ul>
+            </div>
         </div>
-      </nav>
+    </nav>
 
+    <header class="text-center text-white masthead" style="background: url(&quot;assets/img/345093015_197501789774061_2024763957695959001_n.jpg&quot;) top;">
+        <div class="masthead-content">
+            <div class="container p-5">
+                <h2 class="masthead-subheading mb-0" style="height: 150.6px;font-family: 'Lexend Deca', sans-serif;">TUSTOS: Trackable User Spending Through Online Service</h2>
+            </div>
+        </div>
+    </header>
+    
     <div class="about-us p-5 d-flex justify-content-center">
         <div class="box">
-        <h1>About Us</h1>
+        <h2>About Us</h2>
         </div>
     </div>
 
@@ -111,7 +119,9 @@
     </div>
     </body>
 
-    <footer>
-        <p>&copy; 2023 TUSTOS, a Project by 2ITG</p>
+    <footer class="py-5 bg-black" style="background: #6fb1bf;">
+        <div class="container">
+            <p class="text-center text-white m-0 small">Copyright&nbsp;© TUSTOS 2023</p>
+        </div>
     </footer>
     </html>
