@@ -29,8 +29,7 @@ if (isset($_REQUEST['firstname'])) {
 
     $trn_date = date("Y-m-d H:i:s");
 
-    $query = "INSERT into `users` (firstname, lastname, password, email, trn_date) VALUES ('$firstname','$lastname', '" . md5($password) . "', '$email', '$trn_date')";
-    $result = mysqli_query($con, $query);
+
 
     if (emailExists($email, $con)) 
     {
@@ -39,22 +38,22 @@ if (isset($_REQUEST['firstname'])) {
         <strong>Error!</strong> Email Has Already Been Used.
         </div></center>';
         echo $errormsg;  
-        header("location: register.php");
     } 
     else 
     {
-        if ($result) 
+        if ($_REQUEST['password'] != $_REQUEST['confirm_password']) 
         {
-          header("Location: login.php");
+            $errormsg = '<center><div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> Please Re-enter Password and Confirm Password.
+            </div></center>';
+            echo $errormsg;  
         }
-    
         else 
         {
-          $errormsg = '<center><div class="alert alert-danger alert-dismissible">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <strong>Error!</strong> Please Re-enter Password and Confirm Password.
-          </div></center>';
-          echo $errormsg;  
+        $query = "INSERT into `users` (firstname, lastname, password, email, trn_date) VALUES ('$firstname','$lastname', '" . md5($password) . "', '$email', '$trn_date')";
+        $result = mysqli_query($con, $query);
+        header("Location: login.php");
         }
     }
 
