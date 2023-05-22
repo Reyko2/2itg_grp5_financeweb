@@ -8,7 +8,7 @@ if (isset($_POST['email'])) {
   $email = mysqli_real_escape_string($con, $email);
   $password = stripslashes($_REQUEST['password']);
   $password = mysqli_real_escape_string($con, $password);
-  $query = "SELECT * FROM users WHERE email='$email'and password='" . md5($password) . "'";
+  $query = "SELECT * FROM `users` WHERE email='$email'and password='" . md5($password) . "'";
   $result = mysqli_query($con, $query) or die(mysqli_error($con));
   $rows = mysqli_num_rows($result);
   if ($rows == 1) {
@@ -47,7 +47,7 @@ if (isset($_POST['email'])) {
 		      		<span class="fa fa-user-o"></span>
 		      	</div>
 		      	<h3 class="text-center mb-4">Login your Account</h3>
-						<form action="#" class="login-form">
+						<form action="#" method="POST" class="login-form">
 		      		<div class="form-group">
 		      			<input type="text" name="email" class="form-control rounded-left" placeholder="Email" required>
 		      		</div>
