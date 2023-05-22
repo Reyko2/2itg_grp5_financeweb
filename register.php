@@ -8,7 +8,19 @@ if (isset($_REQUEST['firstname'])) {
     $lastname = mysqli_real_escape_string($con, $lastname);
 
     $email = stripslashes($_REQUEST['email']);
-    $email = mysqli_real_escape_string($con, $email);
+
+    function emailExists($email, $con) {
+        $email = $con->real_escape_string($email);
+    
+        $sql = "SELECT email FROM users WHERE email = '$email'";
+        $result = $con->query($sql);
+    
+        if ($result->num_rows > 0) {
+            return true; // Email already exists
+        } else {
+            return false; // Email does not exist
+        }
+    }
 
 
     $password = stripslashes($_REQUEST['password']);
@@ -17,19 +29,32 @@ if (isset($_REQUEST['firstname'])) {
 
     $trn_date = date("Y-m-d H:i:s");
 
-    $query = "INSERT into `users` (firstname, lastname, password, email, trn_date) VALUES ('$firstname','$lastname', '" . md5($password) . "', '$email', '$trn_date')";
-    $result = mysqli_query($con, $query);
-
-    if ($result) {
-      header("Location: login.php");
+    if ($_REQUEST['password'] != $_REQUEST['confirm_password']) 
+    {
+        $errormsg = '<center><div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> Please Re-enter Password and Confirm Password.
+        </div></center>';
+        echo $errormsg;  
     }
-  } else 
-  {
-	$errormsg = '<center><div class="alert alert-danger alert-dismissible">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Error!</strong> Please Re-enter Password and Confirm Password.
-    </div></center>';
-    echo $errormsg;  }
+        else 
+        {
+        $query = "INSERT into `users` (firstname, lastname, password, email, trn_date) VALUES ('$firstname','$lastname', '" . md5($password) . "', '$email', '$trn_date')";
+        $result = mysqli_query($con, $query);
+        header("Location: login.php");
+        }
+
+    if (emailExists($email, $con)) 
+    {
+        $errormsg = '<center><div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> Email Has Already Been Used.
+        </div></center>';
+        echo $errormsg;  
+    } 
+    
+    
+  } 
 }
 ?>
 
@@ -53,8 +78,22 @@ if (isset($_REQUEST['firstname'])) {
 
     <!-- Main css -->
     <link rel="stylesheet" href="css/regstyle.css">
+    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
 </head>
 <body style="background-color: #1E1E1E">
+
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top navbar-custom" style="background: linear-gradient(90deg, #6fb1bf 32%, #0085ff 100%, #6fb1bf 100%), #0085ff;">
+        <div class="container"><a class="navbar-brand" href="homepage.php" style="font-size: 23px;margin-left: -27px;color: rgb(255,255,255);">TUSTOS</a><img class="img-fluid justify-content-xxl-center" src="assets/img/TUSTOS%20ICON.png" style="height: 50px;"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarResponsive"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="aboutus.php" style="color: rgb(255,255,255);font-size: 14.8px;width: 114.938px;text-align: center;">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.php" style="color: rgb(255,255,255);font-size: 14.8px;width: 85.938px;text-align: center;">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php" style="color: rgb(255,255,255);font-size: 14.8px;width: 85.938px;text-align: center;">Log In</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <div class="main">
 

@@ -21,8 +21,9 @@
         <div class="container"><a class="navbar-brand" href="homepage.php" style="font-size: 23px;margin-left: -27px;color: rgb(255,255,255);">TUSTOS</a><img class="img-fluid justify-content-xxl-center" src="assets/img/TUSTOS%20ICON.png" style="height: 50px;"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarResponsive"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="register.php" style="color: rgb(255,255,255);font-size: 14.8px;">Sign Up</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.php" style="color: rgb(255,255,255);font-size: 14.8px;">Log In</a></li>
+                <li class="nav-item"><a class="nav-link" href="aboutus.php" style="color: rgb(255,255,255);font-size: 14.8px;width: 114.938px;text-align: center;">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.php" style="color: rgb(255,255,255);font-size: 14.8px;width: 85.938px;text-align: center;">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php" style="color: rgb(255,255,255);font-size: 14.8px;width: 85.938px;text-align: center;">Log In</a></li>
                 </ul>
             </div>
         </div>

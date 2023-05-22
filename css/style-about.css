@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto&display=swap');
+
+
+body {
+  background-color: #1E1E1E;
+}
+
+.team-member {
+  margin-bottom: 30px;
+}
+
+.team-member img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+  color:white;
+  background-color:#0085ff;
+  height: 100%;
+}
+
+.about-us h2{
+  color: white;
+}
+
+.accordion-button {
+  background: #2d2d2d;
+  color: white;
+}
+
+.accordion-button:not(.collapsed) {
+  background: #2d2d2d;
+  color: white;
+}
+
+.box {
+  background-color: #2d2d2d;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.diamond {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 500px);
+}
+.diamond .team-member:nth-child(1) {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+.diamond .team-member:nth-child(2) {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+.diamond .team-member:nth-child(3) {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+}
+.diamond .team-member:nth-child(4) {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+.navbar-custom {
+  background-color: #0085ff;
+}
+
+footer {
+  background-color: #0085ff;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
