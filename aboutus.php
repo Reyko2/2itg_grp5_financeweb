@@ -73,30 +73,38 @@
         <div class="diamond">
         <div class="team-member">
             <div class="card">
-            <img src="rico.jpg" alt="Team Member 1">
+            <img src="images/riconieto.png" alt="Team Member 1">
             <h3>Rico Nieto</h3>
-            <p>AKA Rico</p>
+              <br>
+              <br>
+            <h4>Chief Executive Officer, Developer</h4>
             </div>
         </div>
         <div class="team-member">
             <div class="card">
             <img src="images/v5_45.png" class="center" alt="Team Member 2">
             <h3>Nicholas Kerky Victoriano</h3>
-            <p>AKA Nike</p>
+            <br>
+            <br>
+            <h4>Chief Financial Officer, Developer</h4>
             </div>
         </div>
         <div class="team-member">
             <div class="card">
-            <img src="jmevangelista.jpg" alt="Team Member 3">
+            <img src="images/jmevangelista.png" alt="Team Member 3">
             <h3>Juan Miguel Evangelista</h3>
-            <p>AKA JM</p>
+            <br>
+            <br>
+            <h4>Chief Operating Officer, Developer</h4>
             </div>
         </div>
         <div class="team-member">
             <div class="card">
             <img src="enriqueresurreccion.jpg" alt="Team Member 4">
             <h3>Enrique Resurreccion</h3>
-            <p>AKA Pique</p>
+            <br>
+            <br>
+            <h4>Chief Marketing Officer, Developer, Representative</h4>
             </div>
         </div>
         </div>
