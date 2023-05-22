@@ -21,7 +21,7 @@ body {
 
 .card {
   color:white;
-  background-color:#0085ff;
+  background-color:#69b4ff;
   height: 100%;
 }
 
@@ -67,15 +67,4 @@ body {
 .diamond .team-member:nth-child(4) {
   grid-column: 3 / 4;
   grid-row: 2 / 3;
-}
-
-.navbar-custom {
-  background-color: #0085ff;
-}
-
-footer {
-  background-color: #0085ff;
-  color: white;
-  padding: 10px;
-  text-align: center;
 }
