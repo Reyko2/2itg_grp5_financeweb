@@ -22,9 +22,13 @@ if (isset($_REQUEST['firstname'])) {
     if ($result) {
       header("Location: login.php");
     }
-  } else {
-    echo ("ERROR: Please Check Your Password & Confirmation password");
-  }
+  } else 
+  {
+	$errormsg = '<center><div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Error!</strong> Please Re-enter Password and Confirm Password.
+    </div></center>';
+    echo $errormsg;  }
 }
 ?>
 
@@ -35,6 +39,10 @@ if (isset($_REQUEST['firstname'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TUSTOS Register</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
