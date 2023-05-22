@@ -26,8 +26,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  --font-family: 'Poppins', sans-serif; }
 
 *,
 *::before,
@@ -36,7 +35,7 @@
   box-sizing: border-box; }
 
 html {
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
@@ -46,7 +45,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Poppins', sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -148,7 +147,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: 'Poppins', sans-serif;
   font-size: 1em; }
 
 pre {
@@ -197,7 +196,7 @@ select,
 optgroup,
 textarea {
   margin: 0;
-  font-family: inherit;
+  font-family: 'Poppins', sans-serif;
   font-size: inherit;
   line-height: inherit; }
 
@@ -4880,7 +4879,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -4965,7 +4964,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -7898,7 +7897,7 @@ button.bg-dark:focus {
     margin-left: auto !important; } }
 
 .text-monospace {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important; }
+  font-family: 'Poppins', sans-serif; }
 
 .text-justify {
   text-align: justify !important; }
@@ -7922,7 +7921,8 @@ button.bg-dark:focus {
   text-align: right !important; }
 
 .text-center {
-  text-align: center !important; }
+  text-align: center !important;
+  font-family: 'Poppins', sans-serif; }
 
 @media (min-width: 576px) {
   .text-sm-left {
@@ -8017,10 +8017,10 @@ a.text-warning:hover, a.text-warning:focus {
   color: #ba8b00 !important; }
 
 .text-danger {
-  color: #dc3545 !important; }
+  color: #006fff !important; }
 
 a.text-danger:hover, a.text-danger:focus {
-  color: #a71d2a !important; }
+  color: #006fff !important; }
 
 .text-light {
   color: #f8f9fa !important; }
@@ -8129,7 +8129,7 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6; } }
 
 body {
-  font-family: "Lato", Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   line-height: 1.8;
   font-weight: normal;
@@ -8152,7 +8152,7 @@ h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
   line-height: 1.5;
   font-weight: 400;
-  font-family: "Lato", Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #000; }
 
 .bg-primary {
@@ -8265,7 +8265,7 @@ h1, h2, h3, h4, h5,
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
   content: "\f0c8";
-  font-family: "FontAwesome";
+  font-family: 'Poppins', sans-serif;
   position: absolute;
   color: rgba(0, 0, 0, 0.1);
   font-size: 20px;
@@ -8283,7 +8283,7 @@ h1, h2, h3, h4, h5,
 .checkbox-wrap input:checked ~ .checkmark:after {
   display: block;
   content: "\f14a";
-  font-family: "FontAwesome";
+  font-family: 'Poppins', sans-serif;
   color: rgba(0, 0, 0, 0.2); }
 
 /* Style the checkmark/indicator */

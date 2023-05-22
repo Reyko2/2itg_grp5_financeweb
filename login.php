@@ -39,6 +39,10 @@ if (isset($_POST['email'])) {
 	<link rel="stylesheet" href="css/loginstyle.css">
 	<link rel="stylesheet" href="assets/css/Features-Boxed.css">
     <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
 
 	</head>
 	<body style="background-color: #1E1E1E">
@@ -68,17 +72,14 @@ if (isset($_POST['email'])) {
 									  <input type="checkbox" checked>
 									  <span class="checkmark"></span>
 									</label>
-								</div>
-								<div class="w-50 text-md-right">
-									<a href="#">Forgot Password</a>
-								</div>
+								</div>							
 	            </div>
 	            <div class="form-group">
 	            	<button type="submit" class="btn btn-primary rounded submit p-3 px-5" style="border-radius:0%">Login</button>
 	            </div>
 	          </form>
 
-			  <br><br><br><br><p class="text-center">Don't have an account?<a href="register.php" class="text-danger"> Register Here</a></p>
+			  <br><br><br><br><p class="text-center">Don't have an account?<a href="register.php" > Register Here</a></p>
 	        </div>			
 				</div>				
 			</div>		

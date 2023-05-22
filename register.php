@@ -89,6 +89,10 @@ else
     <link rel="stylesheet" href="css/regstyle.css">
     <link rel="stylesheet" href="assets/css/Features-Boxed.css">
     <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 </head>
 <body style="background-color: #1E1E1E">
 
@@ -100,7 +104,7 @@ else
             <div class="container">
                 <div class="signup-content">
                     <form action="" method="POST" autocomplete="off">
-                        <h2 class="form-title">Create account</h2>
+                        <h2 class="form-title">Create TUSTOS account</h2>
                         <div class="form-group">
                             <input type="text" class="form-input" name="firstname" id="name" placeholder="First Name" required="required"/>
                         </div>
@@ -117,15 +121,15 @@ else
                             <input type="password" class="form-input" name="confirm_password" id="confirm_password" placeholder="Confirm password" required="required"/>
                         </div>
                         <div class="form-group">
-                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required="required" />
+                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I hereby certify that the information in this form is complete and true</label>
                         </div>
                         <div class="form-group">
                             <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up"/>
                         </div>
                     </form>
                     <p class="loginhere">
-                        Have already an account ? <a href="login.php" class="loginhere-link">Login here</a>
+                        Have already an account ? <a href="login.php">Login here</a>
                     </p>
                 </div>
             </div>
