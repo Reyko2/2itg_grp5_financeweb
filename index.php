@@ -119,9 +119,9 @@ $tips2 = ($todayExp > $todayBudget) ? "<strong>You're over today's budget</stron
 if ($isIncreasing) {
    $tips3 = "Your spending is increasing overtime, check and manage your expenses";
 } elseif ($isDecreasing) {
-  $tips3 = "Your spending less this time, keep it up and you'll increase your budget over time"; 
+  $tips3 = "You're spending less this time, keep it up and you'll increase your budget over time"; 
 } else {
-  $tips3 = "I guess?";
+  $tips3 = "Keep managing your expenses";
 }
 
 
@@ -155,6 +155,7 @@ if ($isIncreasing) {
   <script src="js/feather.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
           <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -198,6 +199,7 @@ if ($isIncreasing) {
           showTip(); // Start showing the tips
         });
         </script>
+        
 
 
 
@@ -271,7 +273,8 @@ if ($isIncreasing) {
 
       <div class="container-fluid">
         <div class="fade-in">
-          <h1><center>Hello, <?php echo $username ?></center></h1>
+          <h1><center>Hello, <?php echo $username ?>&nbsp;<span class="info-icon" style="font-size: 16px;" data-toggle="modal" data-target="#tipsModal">
+          <i class="fa fa-info-circle"></i></span></center></h1>
           <h5 id="tips"><center><?php echo $tips ?></center></h5>
           <br></br>
 
@@ -292,19 +295,18 @@ if ($isIncreasing) {
               </div>
             </div>
 
-
-            <div class="text-center">
-          <div class="card gradient-10 mx-auto" style="max-width: 300px;" center>
-            <div class="card-body">
-              <h3 class="card-title text-white">Today's Budget</h3>
-              <div class="d-inline-block">
-                <h2 class="text-white"><?php echo $todayBudget; ?></h2>
-                <p class="text-white mb-0"><?php echo date("jS F ", strtotime("now")); ?></p>
+              <div class="text-center">
+                <div class="card gradient-10 mx-auto" style="max-width: 300px;">
+                  <div class="card-body">
+                    <h3 class="card-title text-white">Today's Budget</h3>
+                    <div class="d-inline-block">
+                      <h2 class="text-white"><?php echo $todayBudget; ?></h2>
+                      <p class="text-white mb-0"><?php echo date("jS F ", strtotime("now")); ?></p>
+                    </div>
+                    <span class="float-right display-5 opacity-5"><i class="fa fa-usd"></i></span>
+                  </div>
+                </div>
               </div>
-              <span class="float-right display-5 opacity-5"><i class="fa fa-usd"></i></span>
-            </div>
-          </div>
-        </div>
       </div>
         </div>
         <h3 class="mt-4">Dashboard</h3>
