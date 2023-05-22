@@ -19,6 +19,7 @@ if (isset($_REQUEST['firstname'])) {
 
     $query = "INSERT into `users` (firstname, lastname, password, email, trn_date) VALUES ('$firstname','$lastname', '" . md5($password) . "', '$email', '$trn_date')";
     $result = mysqli_query($con, $query);
+
     if ($result) {
       header("Location: login.php");
     }
