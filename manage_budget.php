@@ -1,6 +1,6 @@
 <?php
 include("session.php");
-$exp_fetched = mysqli_query($con, "SELECT * FROM expenses WHERE user_id = '$userid'");
+$exp_fetched = mysqli_query($con, "SELECT * FROM budget WHERE user_id = '$userid'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM expenses WHERE user_id = '$user
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Expense Manager - Dashboard</title>
+    <title>budget Manager - Dashboard</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -41,9 +41,9 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM expenses WHERE user_id = '$user
             <div class="list-group list-group-flush">
                 <a href="index.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="home"></span> Dashboard</a>
                 <a href="add_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="dollar-sign"></span> Add Budget</a>
-                <a href="manage_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="bar-chart-2"></span> Manage Budget</a>
-                <a href="add_expense.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="plus-square"></span> Add Expenses</a>
-                <a href="manage_expense.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action sidebar-active"><span data-feather="dollar-sign"></span> Manage Expenses</a>
+                <a href="manage_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action sidebar-active"><span data-feather="bar-chart-2"></span> Manage Budget</a>
+                <a href="add_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Expenses</a>
+                <a href="manage_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="bar-chart"></span> Manage Expenses</a>
             </div>
             <div class="sidebar-heading">Settings </div>
             <div class="list-group list-group-flush">
@@ -81,18 +81,17 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM expenses WHERE user_id = '$user
             </nav>
 
             <div class="container-fluid">
-                <h3 class="mt-4 text-center">Manage Expenses</h3>
+                <h3 class="mt-4 text-center">Manage budgets</h3>
                 <hr>
                 <div class="row justify-content-center">
 
-                    <div class="container bg-light shadow mt-5">
+                    <div class="container bg-light mt-5">
                         <table class="table table-bordered table-hover border-primary">
                             <thead>
                                 <tr class="text-center">
                                     <th>#</th>
                                     <th>Date</th>
                                     <th>Amount</th>
-                                    <th>Expense Category</th>
                                     <th colspan="2">Action</th>
                                 </tr>
                             </thead>
@@ -100,14 +99,13 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM expenses WHERE user_id = '$user
                             <?php $count=1; while ($row = mysqli_fetch_array($exp_fetched)) { ?>
                                 <tr>
                                     <td><?php echo $count;?></td>
-                                    <td><?php echo $row['expensedate']; ?></td>
-                                    <td><?php echo $row['expense']; ?></td>
-                                    <td><?php echo $row['expensecategory']; ?></td>
+                                    <td><?php echo $row['budgetdate']; ?></td>
+                                    <td><?php echo $row['budget']; ?></td>
                                     <td class="text-center">
-                                        <a href="add_expense.php?edit=<?php echo $row['expense_id']; ?>" class="btn btn-primary btn-sm" style="border-radius:0%;">Edit</a>
+                                        <a href="add_budget.php?edit=<?php echo $row['budget_id']; ?>" class="btn btn-primary btn-sm" style="border-radius:0%;">Edit</a>
                                     </td>
                                     <td class="text-center">
-                                        <a href="add_expense.php?delete=<?php echo $row['expense_id']; ?>" class="btn btn-danger btn-sm" style="border-radius:0%;">Delete</a>
+                                        <a href="add_budget.php?delete=<?php echo $row['budget_id']; ?>" class="btn btn-danger btn-sm" style="border-radius:0%;">Delete</a>
                                     </td>
                                 </tr>
                             <?php $count++; } ?>

@@ -42,6 +42,12 @@ if($rows_t > 0){
     }
 }
 
+//budget
+$sql_command_todayBudget = "SELECT SUM(budget) FROM budget WHERE budgetdate = '$current_date' AND user_id = '$userid'";
+$result_budget = mysqli_query($con, $sql_command_todayBudget);
+$row_budget = mysqli_fetch_assoc($result_budget);
+$todayBudget = $row_budget['SUM(budget)'];
+
 //Yesterday's expense
 $sql_command_yesterdayExp = "SELECT expense, expensedate FROM expenses WHERE expensedate = '$yesterday_date' AND user_id = '$userid'";
 $result_yesterday = mysqli_query($con, $sql_command_yesterdayExp);
@@ -143,8 +149,10 @@ $tips = ($todayExp > 0) ? "You have spent today!" : "You have not spent today!";
       <div class="sidebar-heading" style="background-color:#e1ffff">Management</div>
       <div class="list-group list-group-flush">
         <a href="index.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action sidebar-active"><span data-feather="home"></span> Dashboard</a>
+        <a href="add_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="dollar-sign"></span> Add Budget</a>
+        <a href="manage_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="bar-chart-2"></span> Manage Budget</a>
         <a href="add_expense.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Expenses</a>
-        <a href="manage_expense.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action "><span data-feather="dollar-sign"></span> Manage Expenses</a>
+        <a href="manage_expense.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action "><span data-feather="bar-chart"></span> Manage Expenses</a>
       </div>
       <div class="sidebar-heading" style="background-color:#e1ffff">Settings </div>
       <div class="list-group list-group-flush">
@@ -184,6 +192,21 @@ $tips = ($todayExp > 0) ? "You have spent today!" : "You have not spent today!";
         <div class="fade-in">
           <h1><center>Hello, <?php echo $username ?></center></h1>
           <h5><center><?php echo $tips ?></center></h5>
+          <br></br>
+
+              <div class="text-center">
+          <div class="card gradient-10 mx-auto" style="max-width: 300px;" center>
+            <div class="card-body">
+              <h3 class="card-title text-white">Today's Budget</h3>
+              <div class="d-inline-block">
+                <h2 class="text-white"><?php echo $todayBudget; ?></h2>
+                <p class="text-white mb-0"><?php echo date("jS F ", strtotime("now")); ?></p>
+              </div>
+              <span class="float-right display-5 opacity-5"><i class="fa fa-usd"></i></span>
+            </div>
+          </div>
+        </div>
+  </div>
         </div>
         <h3 class="mt-4">Dashboard</h3>
         <div class="row">
