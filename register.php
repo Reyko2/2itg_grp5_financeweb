@@ -122,7 +122,7 @@ else
                         </div>
                         <div class="form-group">
                             <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required="required" />
-                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree that all information is correct</label>
+                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I hereby certify that the information in this form is complete and true</label>
                         </div>
                         <div class="form-group">
                             <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up"/>
