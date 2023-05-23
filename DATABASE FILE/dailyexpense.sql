@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2023 at 11:54 PM
+-- Generation Time: May 23, 2023 at 06:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -73,6 +73,27 @@ INSERT INTO `expenses` (`expense_id`, `user_id`, `expense`, `expensedate`, `expe
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `payment_id` int(20) NOT NULL,
+  `user_id` varchar(15) NOT NULL,
+  `payments` int(20) NOT NULL,
+  `due_date` varchar(255) NOT NULL,
+  `expensecategory` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`payment_id`, `user_id`, `payments`, `due_date`, `expensecategory`) VALUES
+(1, '7', 21, '2023-05-23', 'Entertainment');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -111,6 +132,12 @@ ALTER TABLE `expenses`
   ADD PRIMARY KEY (`expense_id`);
 
 --
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`payment_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -131,6 +158,12 @@ ALTER TABLE `budget`
 --
 ALTER TABLE `expenses`
   MODIFY `expense_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `payment_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
