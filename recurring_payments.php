@@ -2,72 +2,73 @@
 include("session.php");
 $update = false;
 $del = false;
-$expenseamount = "";
-$expensedate = date("Y-m-d");
+$dueamount = "";
+$due_date = date("Y-m-d");
 $expensecategory = "Entertainment";
+$exp_fetched = mysqli_query($con, "SELECT * FROM payments WHERE user_id = '$userid'");
 if (isset($_POST['add'])) {
-    $expenseamount = $_POST['expenseamount'];
-    $expensedate = $_POST['expensedate'];
+    $dueamount = $_POST['dueamount'];
+    $due_date = $_POST['due_date'];
     $expensecategory = $_POST['expensecategory'];
 
-    $expenses = "INSERT INTO expenses (user_id, expense,expensedate,expensecategory) VALUES ('$userid', '$expenseamount','$expensedate','$expensecategory')";
-    $result = mysqli_query($con, $expenses) or die("Something Went Wrong!");
-    header('location: add_expense.php');
+    $payments = "INSERT INTO payments (user_id, payments,due_date,expensecategory) VALUES ('$userid', '$dueamount','$due_date','$expensecategory')";
+    $result = mysqli_query($con, $payments) or die("Something Went Wrong!");
+    header('location: recurring_payments.php');
 }
 
 if (isset($_POST['update'])) {
     $id = $_GET['edit'];
-    $expenseamount = $_POST['expenseamount'];
-    $expensedate = $_POST['expensedate'];
+    $dueamount = $_POST['dueamount'];
+    $due_date = $_POST['due_date'];
     $expensecategory = $_POST['expensecategory'];
 
-    $sql = "UPDATE expenses SET expense='$expenseamount', expensedate='$expensedate', expensecategory='$expensecategory' WHERE user_id='$userid' AND expense_id='$id'";
+    $sql = "UPDATE payments SET payments='$dueamount', due_date='$due_date', expensecategory='$expensecategory' WHERE user_id='$userid' AND payments_id='$id'";
     if (mysqli_query($con, $sql)) {
         echo "Records were updated successfully.";
     } else {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);
     }
-    header('location: manage_expense.php');
+    header('location: manage_payments.php');
 }
 
 if (isset($_POST['update'])) {
     $id = $_GET['edit'];
-    $expenseamount = $_POST['expenseamount'];
-    $expensedate = $_POST['expensedate'];
+    $dueamount = $_POST['dueamount'];
+    $due_date = $_POST['due_date'];
     $expensecategory = $_POST['expensecategory'];
 
-    $sql = "UPDATE expenses SET expense='$expenseamount', expensedate='$expensedate', expensecategory='$expensecategory' WHERE user_id='$userid' AND expense_id='$id'";
+    $sql = "UPDATE payments SET payments='$dueamount', due_date='$due_date', expensecategory='$expensecategory' WHERE user_id='$userid' AND payments_id='$id'";
     if (mysqli_query($con, $sql)) {
         echo "Records were updated successfully.";
     } else {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);
     }
-    header('location: manage_expense.php');
+    header('location: manage_payments.php');
 }
 
 if (isset($_POST['delete'])) {
     $id = $_GET['delete'];
-    $expenseamount = $_POST['expenseamount'];
-    $expensedate = $_POST['expensedate'];
+    $dueamount = $_POST['dueamount'];
+    $due_date = $_POST['due_date'];
     $expensecategory = $_POST['expensecategory'];
 
-    $sql = "DELETE FROM expenses WHERE user_id='$userid' AND expense_id='$id'";
+    $sql = "DELETE FROM payments WHERE user_id='$userid' AND payments_id='$id'";
     if (mysqli_query($con, $sql)) {
         echo "Records were updated successfully.";
     } else {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);
     }
-    header('location: manage_expense.php');
+    header('location: manage_payments.php');
 }
 
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
     $update = true;
-    $record = mysqli_query($con, "SELECT * FROM expenses WHERE user_id='$userid' AND expense_id=$id");
+    $record = mysqli_query($con, "SELECT * FROM payments WHERE user_id='$userid' AND payments_id=$id");
     if (mysqli_num_rows($record) == 1) {
         $n = mysqli_fetch_array($record);
-        $expenseamount = $n['expense'];
-        $expensedate = $n['expensedate'];
+        $dueamount = $n['payments'];
+        $due_date = $n['due_date'];
         $expensecategory = $n['expensecategory'];
     } else {
         echo ("WARNING: AUTHORIZATION ERROR: Trying to Access Unauthorized data");
@@ -77,12 +78,12 @@ if (isset($_GET['edit'])) {
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     $del = true;
-    $record = mysqli_query($con, "SELECT * FROM expenses WHERE user_id='$userid' AND expense_id=$id");
+    $record = mysqli_query($con, "SELECT * FROM payments WHERE user_id='$userid' AND payments_id=$id");
 
     if (mysqli_num_rows($record) == 1) {
         $n = mysqli_fetch_array($record);
-        $expenseamount = $n['expense'];
-        $expensedate = $n['expensedate'];
+        $dueamount = $n['payments'];
+        $due_date = $n['due_date'];
         $expensecategory = $n['expensecategory'];
     } else {
         echo ("WARNING: AUTHORIZATION ERROR: Trying to Access Unauthorized data");
@@ -99,7 +100,7 @@ if (isset($_GET['delete'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Add Expense</title>
+    <title>Add payments</title>
     <link rel = "icon" href = "icon\TUSTOS ICON.png" type = "image/x-icon">
 
     <!-- Bootstrap core CSS -->
@@ -129,9 +130,9 @@ if (isset($_GET['delete'])) {
                 <a href="index.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="home"></span> Dashboard</a>
                 <a href="add_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="dollar-sign"></span> Add Budget</a>
                 <a href="manage_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="bar-chart-2"></span> Manage Budget</a>
-                <a href="recurring_payments.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="activity"></span> Recurring Payments</a>
-                <a href="add_expense.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action sidebar-active"><span data-feather="plus-square"></span> Add Expenses</a>
-                <a href="manage_expense.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="bar-chart"></span> Manage Expenses</a>
+                <a href="recurring_payments.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action sidebar-active"><span data-feather="activity"></span> Recurring Payments</a>
+                <a href="add_expense.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="plus-square"></span> Add Expense</a>
+                <a href="manage_expense.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="bar-chart"></span> Manage Expense</a>
             </div>
             <div class="sidebar-heading" style="background-color:#e1ffff">Settings </div>
             <div class="list-group list-group-flush">
@@ -168,7 +169,7 @@ if (isset($_GET['delete'])) {
             </nav>
 
             <div class="container">
-                <h3 class="mt-4 text-center">Add Your Daily Expenses</h3>
+                <h3 class="mt-4 text-center">Add Your Daily payments</h3>
                 <hr>
                 <div class="row ">
 
@@ -177,15 +178,15 @@ if (isset($_GET['delete'])) {
                     <div class="col-md" style="margin:0 auto;">
                         <form action="" method="POST">
                             <div class="form-group row">
-                                <label for="expenseamount" class="col-sm-6 col-form-label"><b>Enter Amount($)</b></label>
+                                <label for="dueamount" class="col-sm-6 col-form-label"><b>Enter Amount($)</b></label>
                                 <div class="col-md-6">
-                                    <input type="number" class="form-control col-sm-12" value="<?php echo $expenseamount; ?>" id="expenseamount" name="expenseamount" required>
+                                    <input type="number" class="form-control col-sm-12" value="<?php echo $dueamount; ?>" id="dueamount" name="dueamount" required>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="expensedate" class="col-sm-6 col-form-label"><b>Date</b></label>
+                                <label for="due_date" class="col-sm-6 col-form-label"><b>Date</b></label>
                                 <div class="col-md-6">
-                                    <input type="date" class="form-control col-sm-12" value="<?php echo $expensedate; ?>" name="expensedate" id="expensedate" required>
+                                    <input type="date" class="form-control col-sm-12" value="<?php echo $due_date; ?>" name="due_date" id="due_date" required>
                                 </div>
                             </div>
                             <fieldset class="form-group">
@@ -252,7 +253,7 @@ if (isset($_GET['delete'])) {
                                     <?php elseif ($del == true) : ?>
                                         <button class="btn btn-lg btn-block btn-danger" style="border-radius: 0%;" type="submit" name="delete">Delete</button>
                                     <?php else : ?>
-                                        <button type="submit" name="add" class="btn btn-lg btn-block btn-success" style="border-radius: 0%;">Add Expense</button>
+                                        <button type="submit" name="add" class="btn btn-lg btn-block btn-success" style="border-radius: 0%;">Add payments</button>
                                     <?php endif ?>
                                 </div>
                             </div>
@@ -261,6 +262,46 @@ if (isset($_GET['delete'])) {
 
                     <div class="col-md-3"></div>
                     
+                </div>
+
+
+
+                <div class="container-fluid">
+                <h3 class="mt-4 text-center">Manage Expenses</h3>
+                <hr>
+                <div class="row justify-content-center">
+
+                    <div class="container bg-light shadow mt-5">
+                        <table class="table table-bordered table-hover border-primary">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>#</th>
+                                    <th>Date</th>
+                                    <th>Payments</th>
+                                    <th>Expense Category</th>
+                                    <th colspan="2">Action</th>
+                                </tr>
+                            </thead>
+
+                            <?php $count=1; while ($row = mysqli_fetch_array($exp_fetched)) { ?>
+                                <tr>
+                                    <td><?php echo $count;?></td>
+                                    <td><?php echo $row['due_date']; ?></td>
+                                    <td><?php echo $row['payments']; ?></td>
+                                    <td><?php echo $row['expensecategory']; ?></td>
+                                    <td class="text-center">
+                                        <a href="add_expense.php?edit=<?php echo $row['payment_id']; ?>" class="btn btn-primary btn-sm" style="border-radius:0%;">Edit</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="add_expense.php?delete=<?php echo $row['payment_id']; ?>" class="btn btn-danger btn-sm" style="border-radius:0%;">Delete</a>
+                                    </td>
+                                </tr>
+                            <?php $count++; } ?>
+                        </table>
+                    </div>
+                    
+
+                    </div>
                 </div>
             </div>
         </div>

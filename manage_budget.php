@@ -43,6 +43,7 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM budget WHERE user_id = '$userid
                 <a href="index.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="home"></span> Dashboard</a>
                 <a href="add_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="dollar-sign"></span> Add Budget</a>
                 <a href="manage_budget.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action sidebar-active"><span data-feather="bar-chart-2"></span> Manage Budget</a>
+                <a href="recurring_payments.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="activity"></span> Recurring Payments</a>
                 <a href="add_expense.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action "><span data-feather="plus-square"></span> Add Expenses</a>
                 <a href="manage_expense.php" style="background-color:#e1ffff" class="list-group-item list-group-item-action"><span data-feather="bar-chart"></span> Manage Expenses</a>
             </div>
