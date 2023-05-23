@@ -21,13 +21,17 @@ if (isset($_POST['save'])) {
     $paidPayments = isset($_POST['paid']) ? $_POST['paid'] : [];
 
     // Loop through the payments and update the database accordingly
-    foreach ($paidPayments as $paymentId) {
+    foreach ($paidPayments as $payment_id) {
+        // Get the paid status based on the checkbox value
+        $paid = isset($_POST['paid_' . $payment_id]) ? 1 : 0;
+
         // Update the 'paid' field in the database for the given payment ID
         // Modify this code based on your database structure and query method
-        $updateQuery = "UPDATE payments SET paid = '1' WHERE payment_id = '$paymentId'";
+        $updateQuery = "UPDATE payments SET paid = '$paid' WHERE payment_id = '$payment_id'";
         // Execute the update query using your database connection
         mysqli_query($con, $updateQuery);
     }
+    header('location: recurring_payments.php');
 }
 
 
@@ -36,8 +40,9 @@ if (isset($_POST['update'])) {
     $dueamount = $_POST['dueamount'];
     $due_date = $_POST['due_date'];
     $expensecategory = $_POST['expensecategory'];
+    $paid = $_POST['paid'];
 
-    $sql = "UPDATE payments SET payments='$dueamount', due_date='$due_date', expensecategory='$expensecategory' WHERE user_id='$userid' AND payments_id='$id'";
+    $sql = "UPDATE payments SET payments='$dueamount', due_date='$due_date', expensecategory='$expensecategory' WHERE user_id='$userid' AND payment_id='$id'";
     if (mysqli_query($con, $sql)) {
         echo "Records were updated successfully.";
     } else {
@@ -51,8 +56,9 @@ if (isset($_POST['update'])) {
     $dueamount = $_POST['dueamount'];
     $due_date = $_POST['due_date'];
     $expensecategory = $_POST['expensecategory'];
+    $paid = $_POST['paid'];
 
-    $sql = "UPDATE payments SET payments='$dueamount', due_date='$due_date', expensecategory='$expensecategory' WHERE user_id='$userid' AND payments_id='$id'";
+    $sql = "UPDATE payments SET payments='$dueamount', due_date='$due_date', expensecategory='$expensecategory' WHERE user_id='$userid' AND payment_id='$id'";
     if (mysqli_query($con, $sql)) {
         echo "Records were updated successfully.";
     } else {
@@ -66,8 +72,9 @@ if (isset($_POST['delete'])) {
     $dueamount = $_POST['dueamount'];
     $due_date = $_POST['due_date'];
     $expensecategory = $_POST['expensecategory'];
+    $paid = $_POST['paid'];
 
-    $sql = "DELETE FROM payments WHERE user_id='$userid' AND payments_id='$id'";
+    $sql = "DELETE FROM payments WHERE user_id='$userid' AND payment_id='$id'";
     if (mysqli_query($con, $sql)) {
         echo "Records were updated successfully.";
     } else {
@@ -79,12 +86,13 @@ if (isset($_POST['delete'])) {
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
     $update = true;
-    $record = mysqli_query($con, "SELECT * FROM payments WHERE user_id='$userid' AND payments_id=$id");
+    $record = mysqli_query($con, "SELECT * FROM payments WHERE user_id='$userid' AND payment_id=$id");
     if (mysqli_num_rows($record) == 1) {
         $n = mysqli_fetch_array($record);
         $dueamount = $n['payments'];
         $due_date = $n['due_date'];
         $expensecategory = $n['expensecategory'];
+        $paid = $n['paid'];
     } else {
         echo ("WARNING: AUTHORIZATION ERROR: Trying to Access Unauthorized data");
     }
@@ -93,13 +101,14 @@ if (isset($_GET['edit'])) {
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     $del = true;
-    $record = mysqli_query($con, "SELECT * FROM payments WHERE user_id='$userid' AND payments_id=$id");
+    $record = mysqli_query($con, "SELECT * FROM payments WHERE user_id='$userid' AND payment_id=$id");
 
     if (mysqli_num_rows($record) == 1) {
         $n = mysqli_fetch_array($record);
         $dueamount = $n['payments'];
         $due_date = $n['due_date'];
         $expensecategory = $n['expensecategory'];
+        $paid = $n['paid'];
     } else {
         echo ("WARNING: AUTHORIZATION ERROR: Trying to Access Unauthorized data");
     }
@@ -130,6 +139,7 @@ if (isset($_GET['delete'])) {
 </head>
 
 <body>
+    
 
     <div class="d-flex" id="wrapper">
 
@@ -184,7 +194,7 @@ if (isset($_GET['delete'])) {
             </nav>
 
             <div class="container">
-                <h3 class="mt-4 text-center">Add Your Daily payments</h3>
+                <h3 class="mt-4 text-center">Add Your Due Payments</h3>
                 <hr>
                 <div class="row ">
 
@@ -193,13 +203,13 @@ if (isset($_GET['delete'])) {
                     <div class="col-md" style="margin:0 auto;">
                         <form action="" method="POST">
                             <div class="form-group row">
-                                <label for="dueamount" class="col-sm-6 col-form-label"><b>Enter Amount($)</b></label>
+                                <label for="dueamount" class="col-sm-6 col-form-label"><b>Enter Amount to Pay($)</b></label>
                                 <div class="col-md-6">
                                     <input type="number" class="form-control col-sm-12" value="<?php echo $dueamount; ?>" id="dueamount" name="dueamount" required>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="due_date" class="col-sm-6 col-form-label"><b>Date</b></label>
+                                <label for="due_date" class="col-sm-6 col-form-label"><b>Due Date</b></label>
                                 <div class="col-md-6">
                                     <input type="date" class="form-control col-sm-12" value="<?php echo $due_date; ?>" name="due_date" id="due_date" required>
                                 </div>
@@ -282,7 +292,7 @@ if (isset($_GET['delete'])) {
 
 
                 <div class="container-fluid">
-                <h3 class="mt-4 text-center">Manage Expenses</h3>
+                <h3 class="mt-4 text-center">Manage Payments</h3>
                 <hr>
                 <div class="row justify-content-center">
 
@@ -306,14 +316,15 @@ if (isset($_GET['delete'])) {
                                     <td><?php echo $row['payments']; ?></td>
                                     <td><?php echo $row['expensecategory']; ?></td>
                                     <td>
-                                        <form action="" method="post">
-                                        <input type="checkbox" name="paid[]" value="<?php echo $row['payment_id']; ?>" <?php echo ($row['paid'] == '1') ? 'checked' : ''; ?>>
+                                        <input type="checkbox" name="paid[]" value="<?php echo $row['payment_id']; ?>" <?php if ($row['paid'] == 1) echo "checked"; ?>>
+                                        <input type="hidden" name="paid_<?php echo $row['payment_id']; ?>" value="0">
+                                    </td>
                                     </td>
                                     <td class="text-center">
-                                        <a href="add_expense.php?edit=<?php echo $row['payment_id']; ?>" class="btn btn-primary btn-sm" style="border-radius:0%;">Edit</a>
+                                        <a href="recurring_payments.php?edit=<?php echo $row['payment_id']; ?>" class="btn btn-primary btn-sm" style="border-radius:0%;">Edit</a>
                                     </td>
                                     <td class="text-center">
-                                        <a href="add_expense.php?delete=<?php echo $row['payment_id']; ?>" class="btn btn-danger btn-sm" style="border-radius:0%;">Delete</a>
+                                        <a href="recurring_payments.php?delete=<?php echo $row['payment_id']; ?>" class="btn btn-danger btn-sm" style="border-radius:0%;">Delete</a>
                                     </td>
                                 </tr>
                             <?php $count++; } ?>
