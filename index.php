@@ -171,6 +171,9 @@ if ($isIncreasing) {
 
   <!-- JS scripts -->
   <script src="js/feather.min.js"></script>
+  <script src="js/jquery.slim.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/Chart.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
@@ -217,10 +220,6 @@ if ($isIncreasing) {
       showTip(); // Start showing the tips
     });
   </script>
-
-
-
-
 
   <style>
     .card a {
@@ -287,7 +286,7 @@ if ($isIncreasing) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <img class="img img-fluid rounded-circle" src="<?php echo $userprofile ?>" width="25">
               </a>
