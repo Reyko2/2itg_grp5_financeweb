@@ -23,7 +23,7 @@ if (isset($_POST['save'])) {
     // Loop through the payments and update the database accordingly
     foreach ($paidPayments as $payment_id) {
         // Get the paid status based on the checkbox value
-        $paid = isset($_POST['paid_' . $payment_id]) ? 1 : 0;
+        $paid = isset($_POST['paid']) && in_array($payment_id, $_POST['paid']) ? 1 : 0;
 
         // Update the 'paid' field in the database for the given payment ID
         // Modify this code based on your database structure and query method
@@ -311,13 +311,13 @@ if (isset($_GET['delete'])) {
 
                             <?php $count=1; while ($row = mysqli_fetch_array($exp_fetched)) { ?>
                                 <tr>
-                                    <td><?php echo $count;?></td>
+                                    <td><?php echo $count; ?></td>
                                     <td><?php echo $row['due_date']; ?></td>
                                     <td><?php echo $row['payments']; ?></td>
                                     <td><?php echo $row['expensecategory']; ?></td>
                                     <td>
-                                     <input type="checkbox" name="paid_<?php echo $row['payment_id']; ?>" <?php if ($row['paid'] == 1) echo 'checked'; ?>>
-                                    </td>
+                                        <input type="hidden" name="paid_<?php echo $row['payment_id']; ?>" value="0">
+                                        <input type="checkbox" name="paid[]" value="<?php echo $row['payment_id']; ?>" <?php if ($row['paid'] == 1) echo "checked"; ?>>
                                     </td>
                                     <td class="text-center">
                                         <a href="recurring_payments.php?edit=<?php echo $row['payment_id']; ?>" class="btn btn-primary btn-sm" style="border-radius:0%;">Edit</a>
