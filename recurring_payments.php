@@ -16,6 +16,21 @@ if (isset($_POST['add'])) {
     header('location: recurring_payments.php');
 }
 
+if (isset($_POST['save'])) {
+    // Retrieve the checked payment IDs from the form submission
+    $paidPayments = isset($_POST['paid']) ? $_POST['paid'] : [];
+
+    // Loop through the payments and update the database accordingly
+    foreach ($paidPayments as $paymentId) {
+        // Update the 'paid' field in the database for the given payment ID
+        // Modify this code based on your database structure and query method
+        $updateQuery = "UPDATE payments SET paid = '1' WHERE payment_id = '$paymentId'";
+        // Execute the update query using your database connection
+        mysqli_query($con, $updateQuery);
+    }
+}
+
+
 if (isset($_POST['update'])) {
     $id = $_GET['edit'];
     $dueamount = $_POST['dueamount'];
@@ -28,7 +43,7 @@ if (isset($_POST['update'])) {
     } else {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);
     }
-    header('location: manage_payments.php');
+    header('location: recurring_payments.php');
 }
 
 if (isset($_POST['update'])) {
@@ -43,7 +58,7 @@ if (isset($_POST['update'])) {
     } else {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);
     }
-    header('location: manage_payments.php');
+    header('location: recurring_payments.php');
 }
 
 if (isset($_POST['delete'])) {
@@ -58,7 +73,7 @@ if (isset($_POST['delete'])) {
     } else {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);
     }
-    header('location: manage_payments.php');
+    header('location: recurring_payments.php');
 }
 
 if (isset($_GET['edit'])) {
@@ -279,6 +294,7 @@ if (isset($_GET['delete'])) {
                                     <th>Date</th>
                                     <th>Payments</th>
                                     <th>Expense Category</th>
+                                    <th>Paid</th>
                                     <th colspan="2">Action</th>
                                 </tr>
                             </thead>
@@ -289,6 +305,10 @@ if (isset($_GET['delete'])) {
                                     <td><?php echo $row['due_date']; ?></td>
                                     <td><?php echo $row['payments']; ?></td>
                                     <td><?php echo $row['expensecategory']; ?></td>
+                                    <td>
+                                        <form action="" method="post">
+                                        <input type="checkbox" name="paid[]" value="<?php echo $row['payment_id']; ?>" <?php echo ($row['paid'] == '1') ? 'checked' : ''; ?>>
+                                    </td>
                                     <td class="text-center">
                                         <a href="add_expense.php?edit=<?php echo $row['payment_id']; ?>" class="btn btn-primary btn-sm" style="border-radius:0%;">Edit</a>
                                     </td>
@@ -299,6 +319,9 @@ if (isset($_GET['delete'])) {
                             <?php $count++; } ?>
                         </table>
                     </div>
+                    <form action="" method="post">
+                      <button type="submit" name="save">Save Payment Status</button>
+                     </form>
                     
 
                     </div>
