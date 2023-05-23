@@ -38,13 +38,12 @@ if (isset($_POST['email'])) {
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="css/loginstyle.css">
 	<link rel="stylesheet" href="assets/css/Features-Boxed.css">
     <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-
+	<link rel="stylesheet" href="css/loginstyle.css">
 
 	</head>
 	<body style="background-color: #1E1E1E">
@@ -71,7 +70,7 @@ if (isset($_POST['email'])) {
 	            <div class="form-group d-md-flex">
 	            	<div class="w-50">
 	            		<label class="checkbox-wrap checkbox-primary">Remember Me
-									  <input type="checkbox" checked>
+									  <input type="checkbox" checked >
 									  <span class="checkmark"></span>
 									</label>
 								</div>							
@@ -88,10 +87,24 @@ if (isset($_POST['email'])) {
 		</div>	
 	</section>
 
+	<script>
+  // Add this code to handle the checkbox behavior
+  $(document).ready(function() {
+    $('.checkbox-wrap input[type="checkbox"]').change(function() {
+      if ($(this).is(":checked")) {
+        $(this).closest('.checkbox-wrap').addClass("checked");
+      } else {
+        $(this).closest('.checkbox-wrap').removeClass("checked");
+      }
+    });
+  });
+</script>
   <script src="js/ljquery.min.js"></script>
   <script src="js/lpopper.js"></script>
   <script src="js/lbootstrap.min.js"></script>
   <script src="js/lmain.js"></script>
+
+  
 	</body>
 	<script>
 		$("#menu-toggle").click(function(e) {

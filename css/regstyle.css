@@ -91,6 +91,7 @@ input:focus, select:focus, textarea:focus {
   -ms-box-shadow: none !important; }
 
 input[type=checkbox] {
+ 
   appearance: checkbox !important;
   -moz-appearance: checkbox !important;
   -webkit-appearance: checkbox !important;
@@ -273,6 +274,7 @@ body {
 
 input[type=checkbox]:not(old) {
   width: 2em;
+  
   margin: 0;
   padding: 0;
   font-size: 1em;
@@ -280,14 +282,17 @@ input[type=checkbox]:not(old) {
 
 input[type=checkbox]:not(old) + label {
   display: inline-block;
+  
   margin-top: 7px;
   margin-bottom: 25px; }
 
 input[type=checkbox]:not(old) + label > span {
   display: inline-block;
+  outline: 1px solid #000000;
   width: 13px;
   height: 13px;
   margin-right: 15px;
+  margin-left: 5px;
   margin-bottom: 3px;
   border: 1px solid #ebebeb;
   border-radius: 2px;
@@ -304,6 +309,7 @@ input[type=checkbox]:not(old) + label > span {
   vertical-align: bottom; }
 
 input[type=checkbox]:not(old):checked + label > span {
+  
   background-image: -moz-linear-gradient(white, white);
   background-image: -ms-linear-gradient(white, white);
   background-image: -o-linear-gradient(white, white);
@@ -311,6 +317,7 @@ input[type=checkbox]:not(old):checked + label > span {
   background-image: linear-gradient(white, white); }
 
 input[type=checkbox]:not(old):checked + label > span:before {
+  
   content: '\f26b';
   display: block;
   color: #006fff;
