@@ -27,7 +27,7 @@ if (isset($_POST['save'])) {
 
         // Update the 'paid' field in the database for the given payment ID
         // Modify this code based on your database structure and query method
-        $updateQuery = "UPDATE payments SET paid = '$paid' WHERE payment_id = '$payment_id'";
+        $updateQuery = "UPDATE payments SET paid = '$paid' WHERE payment_id = '$payment_id' AND user_id = '$userid'";
         // Execute the update query using your database connection
         mysqli_query($con, $updateQuery);
     }
@@ -295,7 +295,7 @@ if (isset($_GET['delete'])) {
                 <h3 class="mt-4 text-center">Manage Payments</h3>
                 <hr>
                 <div class="row justify-content-center">
-
+                <form action="" method="post">                 
                     <div class="container bg-light shadow mt-5">
                         <table class="table table-bordered table-hover border-primary">
                             <thead>
@@ -316,8 +316,7 @@ if (isset($_GET['delete'])) {
                                     <td><?php echo $row['payments']; ?></td>
                                     <td><?php echo $row['expensecategory']; ?></td>
                                     <td>
-                                        <input type="checkbox" name="paid[]" value="<?php echo $row['payment_id']; ?>" <?php if ($row['paid'] == 1) echo "checked"; ?>>
-                                        <input type="hidden" name="paid_<?php echo $row['payment_id']; ?>" value="0">
+                                     <input type="checkbox" name="paid_<?php echo $row['payment_id']; ?>" <?php if ($row['paid'] == 1) echo 'checked'; ?>>
                                     </td>
                                     </td>
                                     <td class="text-center">
@@ -330,9 +329,8 @@ if (isset($_GET['delete'])) {
                             <?php $count++; } ?>
                         </table>
                     </div>
-                    <form action="" method="post">
-                      <button type="submit" name="save">Save Payment Status</button>
-                     </form>
+                    <center><button type="submit" name="save">Save Payment Status</center></button>
+                 </form>
                     
 
                     </div>
