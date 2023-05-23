@@ -1692,6 +1692,12 @@ select.form-control:focus::-ms-value {
 select.form-control[size], select.form-control[multiple] {
   height: auto; }
 
+.rememberCheckbox
+{
+  Margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 textarea.form-control {
   height: auto; }
 
@@ -1721,14 +1727,16 @@ textarea.form-control {
   padding-left: 1.25rem; }
 
 .form-check-input {
-  position: absolute;
-  margin-top: 0.3rem;
+ 
+  margin-top: 0.1rem;
   margin-left: -1.25rem; }
   .form-check-input:disabled ~ .form-check-label {
-    color: #6c757d; }
+    color: #6c757d;
+    margin-bottom: 1px; }
 
 .form-check-label {
-  margin-bottom: 0; }
+  margin-bottom: 5px;
+   }
 
 .form-check-inline {
   display: -webkit-inline-box;
@@ -1740,7 +1748,7 @@ textarea.form-control {
   padding-left: 0;
   margin-right: 0.75rem; }
   .form-check-inline .form-check-input {
-    position: static;
+   
     margin-top: 0;
     margin-right: 0.3125rem;
     margin-left: 0; }

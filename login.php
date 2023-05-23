@@ -67,14 +67,14 @@ if (isset($_POST['email'])) {
 	            <div class="form-group d-flex">
 	              <input type="password" name="password" class="form-control rounded-left" placeholder="Password" required>
 	            </div>
-	            <div class="form-group d-md-flex">
-	            	<div class="w-50">
-	            		<label class="checkbox-wrap checkbox-primary">Remember Me
-									  <input type="checkbox" checked >
-									  <span class="checkmark"></span>
-									</label>
-								</div>							
-	            </div>
+	            <div class="form-group row">
+				<div class="col-sm-6">
+					<div class="form-check">
+					<input type="checkbox" class="form-check-input" id="rememberCheckbox" checked>
+					<label class="form-check-label" for="rememberCheckbox">Remember Me</label>
+					</div>
+				</div>
+				</div>
 	            <div class="form-group">
 	            	<button type="submit" class="btn btn-primary rounded submit p-3 px-5" style="border-radius:0%">Login</button>
 	            </div>
