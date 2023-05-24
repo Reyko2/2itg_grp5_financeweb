@@ -44,7 +44,7 @@ if (isset($_POST['update'])) {
 
     $sql = "UPDATE payments SET payments='$dueamount', due_date='$due_date', expensecategory='$expensecategory' WHERE user_id='$userid' AND payment_id='$id'";
     if (mysqli_query($con, $sql)) {
-        echo "Records were updated successfully.";
+      //  echo "Records were updated successfully.";
     } else {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);
     }
@@ -60,7 +60,7 @@ if (isset($_POST['update'])) {
 
     $sql = "UPDATE payments SET payments='$dueamount', due_date='$due_date', expensecategory='$expensecategory' WHERE user_id='$userid' AND payment_id='$id'";
     if (mysqli_query($con, $sql)) {
-        echo "Records were updated successfully.";
+      //  echo "Records were updated successfully.";
     } else {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);
     }
@@ -76,7 +76,7 @@ if (isset($_POST['delete'])) {
 
     $sql = "DELETE FROM payments WHERE user_id='$userid' AND payment_id='$id'";
     if (mysqli_query($con, $sql)) {
-        echo "Records were updated successfully.";
+      //  echo "Records were updated successfully.";
     } else {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);
     }
