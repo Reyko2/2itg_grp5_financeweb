@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>About the Team - TUSTOS</title>
@@ -19,11 +20,11 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
-    <nav class="navbar navbar-dark navbar-expand-lg fixed-top navbar-custom fw-bold" style="background: linear-gradient(90deg, #6fb1bf 32%, #0085ff 100%, #6fb1bf 100%), #0085ff;">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top navbar-custom" style="background: linear-gradient(90deg, #6fb1bf 32%, #0085ff 100%, #6fb1bf 100%), #0085ff;">
         <div class="container"><a class="navbar-brand" href="homepage.php" style="font-size: 23px;margin-left: -27px;color: rgb(255,255,255);">TUSTOS</a><img class="img-fluid justify-content-xxl-center" src="assets/img/TUSTOS%20ICON.png" style="height: 50px;"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarResponsive"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="aboutus.php" style="color: rgb(255,255,255);font-size: 14.8px;width: 114.938px;text-align: center;">ABOUT US</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aboutus.php" style="color: rgb(255,255,255);font-size: 14.8px;width: 114.938px;text-align: center;">ABOUT US</a></li>
                     <li class="nav-item"><a class="nav-link" href="register.php" style="color: rgb(255,255,255);font-size: 14.8px;width: 85.938px;text-align: center;">SIGN UP</a></li>
                     <li class="nav-item"><a class="nav-link" href="login.php" style="color: rgb(255,255,255);font-size: 14.8px;width: 85.938px;text-align: center;">LOG IN</a></li>
                 </ul>
@@ -81,11 +82,11 @@
         <div class="diamond">
         <div class="team-member">
             <div class="card">
-            <img src="assets/img/riconieto.png" alt="Team Member 1">
+            <img src="assets/img/riconieto.jpg" alt="Team Member 1">
             <h3>Rico Nieto</h3>
               <br>
               <br>
-            <h4>Chief Executive Officer, Developer</h4>
+            <h4>Chief Executive Officer, Back-end Developer, Website Functionality Director</h4>
             </div>
         </div>
         <div class="team-member">
@@ -94,7 +95,7 @@
             <h3>Nicholas Kerky Victoriano</h3>
             <br>
             <br>
-            <h4>Chief Financial Officer, Developer</h4>
+            <h4>Chief Financial Officer, Front-end Developer, Login and Register Validation</h4>
             </div>
         </div>
         <div class="team-member">
@@ -103,7 +104,7 @@
             <h3>Juan Miguel Evangelista</h3>
             <br>
             <br>
-            <h4>Chief Operating Officer, Developer</h4>
+            <h4>Chief Operating Officer, Front-end Developer, Design and Feature Director</h4>
             </div>
         </div>
         <div class="team-member">
@@ -112,7 +113,7 @@
             <h3>Enrique Resurreccion</h3>
             <br>
             <br>
-            <h4>Chief Marketing Officer, Developer, Representative</h4>
+            <h4>Chief Marketing Officer, Developer, Representative, Front-end Developer and Login Validation</h4>
             </div>
         </div>
         </div>
